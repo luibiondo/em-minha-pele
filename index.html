@@ -1,14 +1,450 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Em Minha Pele</title>
+    <title>Em Minha Pele — Revista Digital</title>
+    <meta name="description" content="Em Minha Pele — Edição 1, Outubro 2026. Beleza que resiste, identidade que permanece.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
 
+    <main class="revista revista--continuous">
+
+        <!-- ============ PÁGINA 1: CAPA ============ -->
+        <div class="slot">
+            <section class="page" id="p-capa" aria-label="Capa">
+                <img class="img" src="assets/capa-revista.png" alt="Mulher negra com vestido listrado rosa cercada por mãos brancas que cobrem sua boca e seguram seu corpo" style="left:-6px;top:-160px;width:602px;height:1014px">
+                <p class="a ms r w" style="left:173px;top:7px;width:163px;font-size:11.5px;line-height:15px">Edição 1<span style="display:inline-block;width:19px"></span><br>Outubro 2026</p>
+                <h1 class="a pf b w sh-xl" style="left:32px;top:21px;width:375px;font-size:96px;line-height:128px">EM MINHA PELE</h1>
+                <p class="a ms r w" style="left:301px;top:113px;width:288px;font-size:11.5px;line-height:16px">Beleza que resiste, identidade que permanece</p>
+                <span class="a pf b w" aria-hidden="true" style="left:157px;top:149px;font-size:96px;line-height:128px">NHA</span>
+                <span class="a pf b k sh" aria-hidden="true" style="left:32px;top:277px;font-size:96px;line-height:128px">PELE</span>
+                <h2 class="a pf b c w sh" style="left:41px;top:722px;width:496px;font-size:34px;line-height:41px">O preço de não caber no padrão</h2>
+            </section>
+        </div>
+
+        <!-- ============ PÁGINA 2: A BELEZA NÃO PEDE LICENÇA ============ -->
+        <div class="slot">
+            <section class="page" id="p-licenca" aria-label="A beleza não pede licença">
+                <img class="img" src="assets/nao-pede-licenca.png" alt="Rosto de uma criança negra chorando, envolto por mãos brancas" style="left:261px;top:0;width:364px;height:582px">
+                <div class="bg" style="left:-21px;top:81px;width:382px;height:436px;background:var(--vinho)"></div>
+                <h2 class="a pf b w" style="left:61px;top:151px;width:254px;font-size:34px;line-height:41px">A beleza<br>não pede<br>licença.</h2>
+                <p class="a ms l w" style="left:61px;top:361px;width:254px;font-size:11.5px;line-height:16px">Entre o olhar que limita e o corpo que se afirma, reconhecer nossos traços é também recuperar o direito de existir.</p>
+                <h3 class="a pf b bo" style="left:14px;top:567px;width:167px;font-size:34px;line-height:41px;text-align:left">Além do espelho</h3>
+                <p class="a ms l k" style="left:38px;top:592px;width:207px;font-size:11.5px;line-height:16px">A pele, o cabelo e os traços do rosto não são detalhes a corrigir. São parte de uma história que atravessa afetos, memórias e modos de estar no mundo.</p>
+                <div class="a" style="left:315px;top:620px;width:251px;display:flex;flex-direction:column;gap:8px">
+                    <h3 class="pf b" style="color:var(--magenta);font-size:34px;line-height:41px">Quem decide o que é belo?</h3>
+                    <p class="ms l k" style="font-size:11.5px;line-height:16px">Uma leitura sobre padrões, pertencimento e a liberdade de construir a própria imagem.</p>
+                </div>
+                <div class="bg" style="left:0;top:793px;width:595px;height:98px;background:var(--bordo)"></div>
+            </section>
+        </div>
+
+        <!-- ============ PÁGINA 3: AUTORES DA REVISTA ============ -->
+        <div class="slot">
+            <section class="page" id="p-autores" aria-label="Autores da revista" style="background:var(--marrom)">
+                <blockquote class="a pf w" style="left:45px;top:60px;width:435px;font-size:34px;line-height:45px;font-weight:700">“Nossos traços carregam uma história que nenhum padrão de beleza pode apagar.”</blockquote>
+                <h2 class="a pf b w" style="left:350px;top:368px;width:230px;font-size:34px;line-height:41px;font-weight:700">Autores da revista</h2>
+
+                <img class="autor-foto" src="assets/bia.png" alt="Beatriz H Carvalho" style="left:113px;top:436px">
+                <img class="autor-foto" src="assets/editorial-1.png" alt="Gustavo H L Munhoz" style="left:275px;top:436px;width:106px">
+                <img class="autor-foto" src="assets/bella.png" alt="Isabella C Camargo" style="left:436px;top:436px">
+                <img class="autor-foto" src="assets/editorial-1.png" alt="Luigi A Biondo" style="left:113px;top:607px">
+                <img class="autor-foto" src="assets/nati.png" alt="Natalia C L Flores" style="left:275px;top:607px;width:106px">
+                <img class="autor-foto" src="assets/editorial-1.png" alt="Rodrigo Bolgheroni" style="left:436px;top:607px">
+
+                <p class="autor-nome" style="left:117px;top:554px">Beatriz H Carvalho</p>
+                <p class="autor-nome" style="left:279px;top:552px">Gustavo H L Munhoz</p>
+                <p class="autor-nome" style="left:438px;top:555px">Isabella C Camargo</p>
+                <p class="autor-nome" style="left:128px;top:728px">Luigi A Biondo</p>
+                <p class="autor-nome" style="left:286px;top:728px">Natalia C L Flores</p>
+                <p class="autor-nome" style="left:438px;top:728px">Rodrigo Bolgheroni</p>
+            </section>
+        </div>
+
+        <!-- ============ PÁGINA 4: ÍNDICE ============ -->
+        <div class="slot">
+            <section class="page" id="p-indice" aria-label="Índice">
+                <div class="bg" style="left:558px;top:0;width:37px;height:842px;background:var(--marrom)"></div>
+                <div class="bg" style="left:0;top:8px;width:302px;height:98px;background:var(--bordo)"></div>
+                <h2 class="a pf b w" style="left:27px;top:25px;width:243px;font-size:34px;line-height:41px">ÍNDICE</h2>
+
+                <!-- Coluna 1 -->
+                <a href="#p-editorial" class="idx-item"><span class="idx-n" style="left:27px;top:140px">01</span><span class="idx-t" style="left:75px;top:142px">Editorial</span></a>
+                <a href="#p-direito" class="idx-item"><span class="idx-n" style="left:28px;top:209px">02</span><span class="idx-t" style="left:76px;top:211px">O direito de existir sem mudar</span></a>
+                <a href="#p-antes" class="idx-item"><span class="idx-n" style="left:28px;top:287px">03</span><span class="idx-t" style="left:76px;top:289px">Antes de se amar, alguém te ensionou a se esconder</span></a>
+                <a href="#p-direito" class="idx-item"><span class="idx-n" style="left:31px;top:363px">04</span><span class="idx-t" style="left:79px;top:365px">Quando o cabelo vira motivo de punição</span></a>
+                <a href="#p-anunciada" class="idx-item"><span class="idx-n" style="left:31px;top:441px">05</span><span class="idx-t" style="left:79px;top:443px">Quem aparece quando a beleza é anunciada?</span></a>
+                <a href="#p-belo" class="idx-item"><span class="idx-n" style="left:31px;top:519px">06</span><span class="idx-t" style="left:79px;top:521px">O belo também tem uma história</span></a>
+                <a href="#p-belo" class="idx-item"><span class="idx-n" style="left:31px;top:597px">07</span><span class="idx-t" style="left:79px;top:599px">Perspectiva de Frantz Fanon</span></a>
+                <a href="#p-peso" class="idx-item"><span class="idx-n" style="left:31px;top:675px">08</span><span class="idx-t" style="left:79px;top:677px">Perspectiva de Nilma Lino Gomes</span></a>
+                <a href="#p-masculina" class="idx-item"><span class="idx-n" style="left:31px;top:753px">09</span><span class="idx-t" style="left:79px;top:755px">Quando a aparência masculina vira suspeita</span></a>
+
+                <!-- Coluna 2 -->
+                <a href="#p-peso" class="idx-item"><span class="idx-n" style="left:298px;top:135px">10</span><span class="idx-t" style="left:346px;top:137px">O peso imposto às mulheres negras</span></a>
+                <a href="#p-tela" class="idx-item"><span class="idx-n" style="left:298px;top:213px">11</span><span class="idx-t" style="left:346px;top:215px">Um rosto diante da tela</span></a>
+                <a href="#p-inseguranca" class="idx-item"><span class="idx-n" style="left:297px;top:285px">12</span><span class="idx-t" style="left:345px;top:287px;width:174px">A insegurança também dá lucro</span></a>
+                <a href="#p-tons" class="idx-item"><span class="idx-n" style="left:297px;top:363px">13</span><span class="idx-t" style="left:345px;top:365px">Tons que não chegam às prateleiras</span></a>
+                <a href="#p-politica" class="idx-item"><span class="idx-n" style="left:297px;top:441px">14</span><span class="idx-t" style="left:345px;top:443px">O padrão é uma questão política</span></a>
+                <a href="#p-memoria" class="idx-item"><span class="idx-n" style="left:297px;top:519px">15</span><span class="idx-t" style="left:345px;top:521px;width:140px">Beleza também é memória</span></a>
+                <a href="#p-marcha" class="idx-item"><span class="idx-n" style="left:297px;top:597px">16</span><span class="idx-t" style="left:345px;top:599px">Marcha do Orgulho Crespo</span></a>
+                <a href="#p-existimos" class="idx-item"><span class="idx-n" style="left:297px;top:675px">17</span><span class="idx-t" style="left:345px;top:677px">Outras formas de dizer: existimos</span></a>
+                <a href="#p-mudar" class="idx-item"><span class="idx-n" style="left:297px;top:753px">18</span><span class="idx-t" style="left:345px;top:755px">O que precisa mudar</span></a>
+            </section>
+        </div>
+
+        <!-- ============ PÁGINA 5: EDITORIAL (PÁGINA 3 NA REVISTA) ============ -->
+        <div class="slot">
+            <section class="page" id="p-editorial" aria-label="Editorial">
+                <div class="bg" style="left:380px;top:105px;width:270px;height:68px;background:var(--nude)"></div>
+                <img class="img round" src="assets/editorial-1.png" alt="Ilustração de mulher negra com chapinha e pincel de maquiagem" style="left:111px;top:12px;width:118px;height:118px">
+                <img class="img round" src="assets/editorial-2.png" alt="Ilustração de rosto negro coberto por máscara branca" style="left:289px;top:12px;width:118px;height:118px">
+                <img class="img round" src="assets/editorial-3.png" alt="Ilustração de homem negro diante de um espelho que reflete um homem branco" style="left:456px;top:12px;width:118px;height:120px">
+                <div class="bg" style="left:84px;top:145px;width:534px;height:697px;background:var(--escuro)"></div>
+                <span class="a ms w" aria-hidden="true" style="left:111px;top:145px;font-size:55px;line-height:67px;height:49px">N</span>
+                <p class="a ms w j" style="left:104px;top:178px;width:227px;font-size:11.5px;line-height:16px;white-space:pre-line"><span style="padding-left:98px">a sociedade brasileira, os</span>
+<span style="padding-left:98px"></span>padrões de beleza não são mero reflexo de gostos individuais, mas expressão de uma hierarquia racial herdada do colonialismo, que associou a branquitude ao belo e à respeitabilidade. Ainda hoje, a mídia reproduz essa lógica ao privilegiar padrões eurocêntricos e sub-representar traços negros, perpetuando a desvalorização da cultura afro-brasileira e afetando a construção da identidade e do pertencimento de pessoas negras. Com isso, busca-se evidenciar os mecanismos estruturais que sustentam o racismo estético e a necessidade de transformá-los.
+
+A exclusão de traços negros da representação da beleza não surgiu por acaso. Ao longo da história, valores associados à aparência europeia foram elevados a sinais de beleza, prestígio e adequação, enquanto características negras foram marginalizadas. A mídia prolonga essa desigualdade ao decidir quem protagoniza suas narrativas e quais corpos merecem destaque. A Pesquisa TODXS, da ONU Mulheres, apontou que, em 2021, mulheres negras correspondiam a 27% das protagonistas femininas na televisão. A ONU Mulheres contextualiza esse dado ao apontar que cerca de 56% da população brasileira se autodeclarava negra. Embora os números correspondam a recortes diferentes, o contraste expõe a distância entre a composição racial do país e as imagens que recebem visibilidade. Quando a pele clara, o cabelo liso e os traços europeus dominam as telas, a mídia não apenas reflete uma hierarquia antiga, mas ajuda a mantê-la viva, apresentando a branquitude como padrão universal e empurrando outras formas de beleza para a invisibilidade.
+
+O impacto dessa hierarquia ultrapassa as telas e alcança a relação das pessoas negras com a própria aparência. Em "Pele negra, máscaras brancas", Frantz Fanon analisa como o olhar racista pode levar pessoas negras a se enxergarem por critérios que as inferiorizam. Essa violência cotidiana aparece quando o cabelo crespo é tratado como inadequado ou pouco profissional, enquanto o cabelo liso é associado à aceitação e ao prestígio.</p>
+                <p class="a ms w j" style="left:348px;top:190px;width:228px;font-size:11.5px;line-height:16px">Nilma Lino Gomes, ao compreender o cabelo negro como expressão de identidade e pertencimento, evidencia que desvalorizá-lo significa também atacar referências culturais e históricas. Sob essa pressão, pessoas negras podem ser levadas a esconder ou modificar traços próprios para escapar da rejeição. Assim, a desigualdade midiática e a discriminação cotidiana não apenas restringem quem é visto como belo, mas também tentam impor quais aparências são aceitas e quais devem ser apagadas, reforçando uma hierarquia que atinge tanto a representação coletiva quanto a relação individual com a própria identidade.<br><br>Portanto, enfrentar o racismo estético exige transformar as estruturas que produzem e difundem padrões de beleza. Para isso, cabe ao Governo Federal, por meio do Ministério da Cultura e em articulação com os órgãos responsáveis pela igualdade racial e pela comunicação pública, instituir critérios de equidade racial para campanhas oficiais e produções audiovisuais financiadas com recursos públicos. A medida será aplicada a essas campanhas e produções, que deverão cumprir metas de protagonismo negro nas obras e de participação de profissionais negros em suas equipes de criação. O cumprimento dessas metas deverá ser acompanhado por relatórios anuais que indiquem quem aparece e quem participa da produção. Resultados insuficientes devem exigir planos corretivos antes da concessão de novos recursos. Essa ação é viável porque o Estado pode vincular o financiamento público a critérios definidos e, ao ampliar a circulação de imagens e narrativas que valorizem os traços negros, contribuirá para contestar a branquitude como padrão universal e fortalecer o reconhecimento da identidade e da cultura afro-brasileiras.</p>
+                <h2 class="a pf b vertical" style="left:-6px;top:453px;width:90px;height:379px;font-size:34px;line-height:41px;color:var(--escuro-2)">EDITORIAL</h2>
+                <span class="pn w">3</span>
+            </section>
+        </div>
+
+        <!-- ============ PÁGINA 6: O DIREITO DE EXISTIR SEM MUDAR (PÁGINA 4 NA REVISTA) ============ -->
+        <div class="slot">
+            <section class="page" id="p-direito" aria-label="O direito de existir sem mudar">
+                <h2 class="a pf b k" style="left:39px;top:25px;width:517px;font-size:34px;line-height:41px;white-space:nowrap">O direito de existir sem mudar</h2>
+                <p class="a ms t13 j k" style="left:18px;top:82px;width:213px">Na reportagem publicada pela Rádio Itatiaia, em outubro de 2025, Jeniffer Lorraine Rodrigues Braulio denunciou ter sido constrangida no trabalho, em Belo Horizonte, por usar o cabelo crespo solto. Segundo seu relato, um diretor da concessionária exigiu que ela o prendesse para apresentar uma “imagem mais limpa” aos clientes. Ela afirmou que não havia uma regra sobre cabelos na empresa e que colegas brancas trabalhavam com os fios soltos. Depois do episódio, procurou atendimento médico e se afastou do trabalho. À reportagem, contou que a mulher chegou a questionar a própria aparência: “Comecei a me questionar se meu cabelo era realmente sujo.” Trata-se de uma denúncia apresentada por Jeniffer; a empresa ainda não havia respondido quando a matéria foi publicada.<br><br>A trajetória de Valdemira Telma, conhecida como Negra Jhô, mostra outro caminho diante dessa desvalorização. Em entrevista publicada pelo EL PAÍS em dezembro de 2025, ela lembrou que, na infância, ouvia ofensas por causa do cabelo crespo. Hoje, trabalha com penteados afro em seu salão no Pelourinho, em Salvador. A característica que tentaram fazê-la rejeitar tornou-se parte central de seu trabalho e da forma como afirma sua identidade.</p>
+                <img class="img" src="assets/direito-existir.png" alt="Perfil de mulher negra com penteado afro em coques diante de um círculo vermelho" style="left:272px;top:82px;width:268px;height:335px">
+                <div class="bg" style="left:253px;top:438px;width:374px;height:394px;background:var(--marrom)"></div>
+                <p class="a ms t13 j w" style="left:272px;top:450px;width:301px">É nesse embate que a canção Respeitem Meus Cabelos, Brancos, de Chico César, faz da vírgula parte da reivindicação: “brancos” não descreve os cabelos, mas chama à responsabilidade quem os julga. O cabelo deixa de ser tratado como detalhe privado e revela uma relação de poder: quem pode definir o que é aceitável e quem precisa justificar a própria aparência. O próprio Chico amplia esse sentido: a imagem dos cabelos alcança também raça, geração, pessoas e ideias. A questão, portanto, não é pedir tolerância, mas exigir respeito.<br><br>Nas histórias de Jeniffer e Negra Jhô, essa disputa deixa de ser abstrata. O primeiro revela o custo de ser julgada por esse padrão; a segunda mostra a possibilidade de afirmar a própria imagem. Entre a denúncia e a afirmação, fica a pergunta: por que tantas pessoas ainda precisam defender o direito de usar o cabelo e a aparência com que nasceram?</p>
+                
+                <!-- Interação solicitada no Figma: ao clicar no box, abre QR Code para ouvir a música -->
+                <button type="button" class="hotspot" data-open="modal-musica" aria-label="Ouvir a canção Respeitem Meus Cabelos, Brancos, de Chico César" title="Clique para ouvir a música de Chico César via QR Code" style="left:253px;top:438px;width:342px;height:394px"></button>
+                <span class="pn k">4</span>
+                <div class="bg" style="left:39px;top:815px;width:164px;height:51px;background:var(--terracota)"></div>
+            </section>
+        </div>
+
+        <!-- ============ PÁGINA 7: ANTES DE SE AMAR (PÁGINA 5 NA REVISTA) ============ -->
+        <div class="slot">
+            <section class="page" id="p-antes" aria-label="Antes de se amar, alguém te ensinou a se esconder">
+                <h2 class="a pf b k" style="left:0;top:-20px;width:595px;font-size:34px;line-height:90px;text-align:center">
+                    <span style="position:absolute;left:155px;top:0;width:285px;white-space:nowrap">Antes de se amar</span>
+                    <span style="position:absolute;left:26px;top:36px;width:543px;white-space:nowrap">alguém te ensinou a se esconder</span>
+                </h2>
+                <div class="bg" style="left:11px;top:89px;width:249px;height:777px;background:var(--vinho)"></div>
+                <img class="img" src="assets/tornar-se-negro.png" alt="Capa do livro Tornar-se negro, de Neusa Santos Souza" style="left:273px;top:89px;width:283px;height:425px">
+                <p class="a ms t13 j w" style="left:29px;top:105px;width:212px">Talvez a parte mais cruel do racismo estético seja fazer alguém acreditar que precisa mudar a si mesmo para merecer o olhar do outro.<br>Existe uma idade em que ainda não sabemos nomear o preconceito. Somos crianças querendo pertencer, sem entender por que alguns traços são celebrados enquanto outros viram motivo de piada. Queremos ser aceitos e reconhecidos como bonitos.<br>É nessa idade que certas palavras começam a ficar. O comentário sobre o cabelo que parece brincadeira para quem diz. O apelido que faz todos rirem, menos quem o recebe. A comparação com alguém considerado mais bonito. O elogio acompanhado de um “apesar de”, como se algo precisasse ser compensado.<br>Talvez ninguém perceba quando algo muda. A criança deseja outro cabelo, evita fotografias ou imagina como seria receber os mesmos elogios. Aos poucos, aprende a enxergar a própria aparência pelos olhos de quem a critica, percebendo que o mundo parece mais generoso com quem se aproxima de determinado ideal.<br>O que parece um comentário isolado pode se transformar em uma insegurança que acompanha alguém por anos. A vontade de mudar passa a carregar o desejo de evitar a rejeição e finalmente se sentir suficiente.</p>
+                <div class="bg" style="left:569px;top:127px;width:45px;height:184px;background:var(--terracota)"></div>
+                <p class="a ms t13 j k" style="left:279px;top:534px;width:277px">Em “Tornar-se negro”, a psicanalista Neusa Santos Souza investiga o custo emocional de viver em uma sociedade que transforma a branquitude em ideal de beleza, reconhecimento e sucesso. O racismo influencia não apenas como uma pessoa é vista, mas também como aprende a enxergar a si mesma. Quando a aparência branca é apresentada como modelo, surge um conflito entre quem se é e quem se acredita precisar ser.<br>Reconhecer esse processo é entender que muitas inseguranças são construídas por padrões que hierarquizam aparências. O problema nunca esteve nos traços de quem cresceu tentando escondê-los, mas em uma sociedade que ensinou a tratá-los como defeitos.</p>
+                <span class="pn w">5</span>
+            </section>
+        </div>
+
+        <!-- ============ PÁGINA 8: QUEM APARECE QUANDO A BELEZA É ANUNCIADA? (PÁGINA 5 NA REVISTA) ============ -->
+        <div class="slot">
+            <section class="page" id="p-anunciada" aria-label="Quem aparece quando a beleza é anunciada?">
+                <div class="bg" style="left:-29px;top:-15px;width:651px;height:630px;background:var(--vinho)"></div>
+                <h2 class="a pf b cr" style="left:49px;top:23px;width:497px;font-size:34px;line-height:41px">Quem aparece quando a beleza é anunciada?</h2>
+                <div class="bg" style="left:332px;top:139px;width:245px;height:215px;background:var(--terracota)"></div>
+                <p class="a ms w" style="left:35px;top:150px;width:289px;font-size:11.5px;line-height:16px">Um anúncio não vende apenas um produto. Ele organiza desejos, aproxima certas aparências do prestígio e deixa outras à margem. Quando a branquitude ocupa repetidamente o lugar da beleza universal, a presença negra pode surgir como exceção, mesmo em um país marcado pela diversidade racial.</p>
+                <p class="a ms w" style="left:343px;top:150px;width:229px;font-size:11.5px;line-height:16px">Para observar esse desequilíbrio, o GEMAA, da UERJ, analisou 817 anúncios e 752 modelos em 60 edições selecionadas aleatoriamente da revista Veja, entre 2018 e 2023. Na amostra, 83% dos modelos eram brancos e 17% não brancos. Embora a presença não branca tenha crescido no período, os modelos brancos continuaram maioria. O recorte se limita à revista Veja, mas revela uma desigualdade persistente na publicidade impressa.<br><br>Esses números não apontam apenas casos isolados. Para entendê-los, é preciso recusar a ideia de que beleza seja apenas gosto pessoal. No Brasil, os critérios do que é bonito, adequado e respeitável foram construídos em uma história de poder racial. A colonização e a escravização instituíram a branquitude como sinal de prestígio e empurraram traços negros para o lugar da inadequação. Essa hierarquia não desapareceu: continua nos valores e nas imagens que aprendemos a reconhecer como naturais.</p>
+                <img class="img" src="assets/beleza-anunciada.png" alt="Vista aérea de mulheres negras com tranças e búzios sobre pelos vermelhos" style="left:28px;top:274px;width:292px;height:438px">
+                <p class="a ms" style="left:330px;top:652px;width:251px;font-size:11.5px;line-height:16px;color:var(--marrom)">É nesse processo que a mídia atua. Ao repetir algumas aparências como norma e outras como exceção, transforma uma construção histórica em senso comum.</p>
+                <p class="a ms" style="left:28px;top:721px;width:483px;font-size:11.5px;line-height:16px;color:var(--marrom)">&nbsp;Assim, quando cabelos crespos provocam preconceito e vergonha, o problema não está nos fios nem em uma preferência individual. Está na régua social que associa aceitação à aproximação do padrão branco. Questionar o ideal de beleza também é perguntar quem teve poder para defini-lo e por que tantas pessoas ainda são pressionadas a mudar para caber nele.</p>
+
+                <!-- Interação solicitada no Figma: ao clicar no box, aparece o gráfico -->
+                <button type="button" class="hotspot" data-toggle="grafico-gemaa" aria-expanded="false" aria-controls="grafico-gemaa" aria-label="Mostrar gráfico interativo: modelos em anúncios da revista Veja" title="Clique para ver o gráfico do estudo GEMAA/UERJ" style="left:332px;top:139px;width:245px;height:215px"></button>
+                <div class="box-grafico" id="grafico-gemaa" role="img" aria-label="Gráfico: 83% dos modelos eram brancos e 17% não brancos" data-toggle="grafico-gemaa" title="Clique para fechar o gráfico">
+                    <h4>Modelos em anúncios · Veja (2018–2023)</h4>
+                    <div class="barras">
+                        <div class="barra" style="height:83%"></div>
+                        <div class="barra" style="height:17%"></div>
+                    </div>
+                    <div class="legendas">
+                        <div><strong>83%</strong><span>Brancos</span></div>
+                        <div><strong>17%</strong><span>Não brancos</span></div>
+                    </div>
+                </div>
+                <span class="pn k">5</span>
+            </section>
+        </div>
+
+        <!-- ============ PÁGINA 9: O BELO TAMBÉM TEM UMA HISTÓRIA (PÁGINA 6 NA REVISTA) ============ -->
+        <div class="slot">
+            <section class="page" id="p-belo" aria-label="O belo também tem uma história">
+                <div class="bg" style="left:569px;top:-60px;width:53px;height:1151px;background:var(--marrom)"></div>
+                <div class="bg" style="left:0;top:16px;width:547px;height:118px;background:var(--bordo)"></div>
+                <h2 class="a pf b w" style="left:14px;top:30px;width:511px;font-size:34px;line-height:41px;white-space:nowrap">O belo também tem uma história</h2>
+                <p class="a ms l i w" style="left:14px;top:75px;width:495px;font-size:11.5px;line-height:16px">Mudar o padrão exige reconhecer como ele foi construído e por quais instituições continua sendo legitimado.</p>
+                <div class="a ms t12 ps" style="left:33px;top:155px;width:302px;color:var(--marrom)">
+                    <p>O belo não nasce fora da história. A colonização articulou diferenças corporais a relações de dominação, elevando características europeias a sinais de civilidade e prestígio. Pele, cabelo e traços negros foram desvalorizados dentro dessa ordem, que procurava justificar a desigualdade também pela aparência.</p>
+                    <p>A abolição da escravidão não desfez a hierarquia racial, enquanto a população negra seguia afastada dos espaços de prestígio, a aparência europeia permanecia associada à beleza, ao progresso e à respeitabilidade.</p>
+                </div>
+                <img class="img" src="assets/belo-historia.png" alt="Fotografia antiga de três mulheres negras trançando os cabelos umas das outras" style="left:348px;top:155px;width:187px;height:297px">
+                <div class="bg" style="left:27px;top:400px;width:299px;height:405px;background:var(--nude)"></div>
+                <p class="a ms k" style="left:46px;top:423px;width:269px;font-size:11.5px;line-height:16px"><b>Em “</b>Pele negra, máscaras brancas”, Frantz Fanon examina uma sociedade que faz da branquitude a medida do humano. O olhar colonial não apenas descreve diferenças: distribui valor, reconhecimento e autoridade. A pessoa negra pode ser confrontada com uma imagem de si construída de fora, antes mesmo de falar. A aparência passa a carregar sentidos que não escolheu e que procuram reduzir sua existência a uma categoria racial.<br><br>Interiorizar essa inferiorização não significa ter uma falha íntima ou uma patologia individual. É viver sob relações que repetem a promessa de aceitação pela aproximação a padrões brancos. Alterar a fala, o cabelo ou a apresentação pode tornar-se uma tentativa de proteção. Fanon permite perguntar pelo mundo que exige essas máscaras, em vez de julgar quem precisa negociar com elas para estudar, trabalhar ou circular.</p>
+                <p class="a ms t12" style="left:353px;top:479px;width:182px;color:var(--marrom)">Esse legado não significa que todo gosto individual seja idêntico. Significa que as possibilidades de reconhecimento não se distribuem igualmente. Quando uma escola ou empresa associa cabelo crespo à falta de cuidado, uma preferência deixa de ser privada e passa a regular o acesso a direitos e oportunidades.</p>
+                <span class="pn w">6</span>
+            </section>
+        </div>
+
+        <!-- ============ PÁGINA 10: QUANDO A APARÊNCIA MASCULINA VIRA SUSPEITA (PÁGINA 7 NA REVISTA) ============ -->
+        <div class="slot">
+            <section class="page" id="p-masculina" aria-label="Quando a aparência masculina vira suspeita">
+                <div class="bg" style="left:569px;top:-60px;width:53px;height:1151px;background:var(--marrom)"></div>
+                <img class="img" src="assets/aparencia-masculina.png" alt="Dois homens negros com tranças, frente a frente, um deles de cabeça para baixo, sobre fundo terracota" style="left:0;top:-20px;width:569px;height:376px">
+                <h2 class="a pf b k" style="left:0;top:316px;width:569px;font-size:34px;line-height:41px">
+                    <span style="position:absolute;left:31px;top:0;white-space:nowrap">Quando a aparência masculina</span>
+                    <span style="position:absolute;left:192px;top:35px;white-space:nowrap">vira suspeita</span>
+                </h2>
+                <p class="a ms l k" style="left:38px;top:400px;width:491px;font-size:11.5px;line-height:16px"><b>Para</b> homens negros, cabelo, pele e roupa podem ser lidos por um repertório que associa a masculinidade negra à ameaça. Não se trata de uma propriedade desses corpos, mas de uma interpretação racializada. Um penteado ou uma peça de roupa não informa intenção, caráter ou conduta. Quando a aparência basta para despertar suspeita, o julgamento antecede qualquer ação e transforma a presença em algo a ser justificado.</p>
+                <div class="bg" style="left:38px;top:490px;width:225px;height:269px;background:var(--escuro)"></div>
+                <p class="a ms t11 w" style="left:58px;top:504px;width:184px">Em espaços públicos, essa leitura pode aparecer no acompanhamento por seguranças, em abordagens ou no desconforto de quem vigia a circulação alheia. O custo não se limita ao episódio: pode envolver calcular trajetos, gestos e roupas para evitar conflitos. Essas estratégias não confirmam a suspeita; revelam a desigualdade de um ambiente em que alguns precisam administrar a percepção dos outros para realizar tarefas comuns.</p>
+                <div class="bg" style="left:297px;top:490px;width:225px;height:269px;background:var(--escuro)"></div>
+                <p class="a ms t11 w" style="left:317px;top:504px;width:184px">No trabalho e na educação, a mesma associação pode assumir a linguagem da boa apresentação ou da disciplina. Cabelos crespos, tranças e estilos de vestir são avaliados como sinais de inadequação, mesmo sem relação com competência ou aprendizagem. Regras precisam ter finalidade demonstrável e aplicação coerente. Exigir que um homem negro pareça menos ameaçador preserva o preconceito de quem observa, em vez de corrigi-lo.</p>
+                <span class="pn w">7</span>
+                <p class="a ms t11 e2" style="left:40px;top:775px;width:491px">Empresas, escolas e serviços de segurança devem distinguir fatos de estereótipos, registrar reclamações e rever práticas. A responsabilidade é de quem discrimina, não de quem foi colocado sob suspeita.</p>
+            </section>
+        </div>
+
+        <!-- ============ PÁGINA 11: O PESO IMPOSTO ÀS MULHERES NEGRAS (PÁGINA 8 NA REVISTA) ============ -->
+        <div class="slot">
+            <section class="page" id="p-peso" aria-label="O peso imposto às mulheres negras">
+                <div class="bg" style="left:-31px;top:0;width:651px;height:197px;background:var(--escuro)"></div>
+                <h2 class="a pf b cr" style="left:22px;top:24px;width:574px;font-size:34px;line-height:41px;white-space:nowrap">O peso imposto às mulheres negras</h2>
+                <p class="a ms l i w" style="left:25px;top:69px;width:568px;font-size:11.5px;line-height:16px">Alisar ou não alisar não mede consciência racial. O problema é a exigência de adequação como condição de respeito.</p>
+                <p class="a ms t12 w" style="left:25px;top:110px;width:554px">Sobre mulheres negras, a cobrança estética combina raça e gênero. Espera-se uma apresentação cuidadosamente controlada, enquanto seus traços podem ser tratados como excessivos ou inadequados. No trabalho, a linguagem da “boa aparência” pode ocultar critérios que não cobram de todos os corpos o mesmo esforço.</p>
+                <img class="img" src="assets/peso-imposto.png" alt="Retrato de mulher negra com tranças enroladas em espirais sobre fundo bordô" style="left:356px;top:163px;width:197px;height:247px">
+                <div class="bg" style="left:499px;top:168px;width:30px;height:16px;background:#4C0117"></div>
+                <div class="bg" style="left:507px;top:180px;width:30px;height:16px;background:#4C0016"></div>
+                <p class="a ms t12 j" style="left:24px;top:214px;width:288px;color:var(--marrom)">Na pesquisa brasileira Cabelos sem Limites, Como Nós, conduzida pelo Instituto Sumaúma e pela RPretas. Entre as 1.001 mulheres pretas ou pardas, de cabelos crespos ou cacheados, ouvidas em quatro capitais, oito em cada dez consideraram o cabelo uma ferramenta de expressão, embora cerca de 70% perceberam pressão social para alisar os fios. Ou seja, aquilo que afirma identidade também se torna alvo de exigências para ser aceito.</p>
+                <div class="bg" style="left:-25px;top:393px;width:326px;height:333px;background:var(--marrom)"></div>
+                <div class="a ms t12 j w ps" style="left:14px;top:410px;width:270px">
+                    <p>Nilma Lino Gomes compreende o cabelo como símbolo da identidade negra, atravessado por relações sociais e disputas por reconhecimento. Essa leitura ajuda a perceber por que a desvalorização dos fios atinge mais do que a aparência: comentários, regras e olhares podem fazer uma mulher negra sentir que há algo errado em seus traços e levá-la a modificá-los para evitar rejeição.</p>
+                    <p>O cabelo também reúne saberes de cuidado, memórias e referências culturais. Valorizar esses fios não significa exigir que todas os usem de uma única maneira, mas garantir que nenhuma seja punida ou diminuída por sua escolha. Empresas e instituições precisam enfrentar discriminações, revisar regras de apresentação e garantir respeito sem cobrar o apagamento de traços negros.</p>
+                </div>
+                <p class="a ms t12 j" style="left:320px;top:432px;width:252px;color:var(--marrom)">A pressão também alcança o trabalho. Nos Estados Unidos, o Good Hair Study, do Perception Institute, registrou que uma em cada cinco mulheres negras participantes sentia pressão para alisar o cabelo nesse ambiente — o dobro da proporção entre mulheres brancas. Esse dado ajuda a mostrar como padrões de aparência podem interferir na aceitação profissional em outro contexto. Juntos, os levantamentos evidenciam o peso imposto às mulheres negras: para muitas, expressar a própria identidade pode significar enfrentar cobranças que não recaem igualmente sobre todos os cabelos<br><br><br>O contraste entre expressão e pressão revela uma disputa sobre quem pode definir a própria. Adequar-se pode exigir tempo, dinheiro e disponibilidade emocional. A escolha pelo alisamento, porém, não deve ser reduzida à submissão: trajetórias pessoais não cabem em um julgamento feito a partir do penteado.</p>
+                <p class="a pf i c bo" style="left:18px;top:748px;width:283px;font-size:22px;line-height:27px">A escolha só é livre quando a recusa não custa direitos.</p>
+                <span class="pn k">8</span>
+            </section>
+        </div>
+
+        <!-- ============ PÁGINA 12: UM ROSTO DIANTE DA TELA (PÁGINA 9 NA REVISTA) ============ -->
+        <div class="slot">
+            <section class="page" id="p-tela" aria-label="Um rosto diante da tela">
+                <div class="bg" style="left:-42px;top:-143px;width:651px;height:324px;background:var(--vinho)"></div>
+                <div class="bg" style="left:24px;top:26px;width:330px;height:786px;background:var(--nude)"></div>
+                <h2 class="a pf b k" style="left:24px;top:26px;width:330px;font-size:34px;line-height:41px">
+                    <span style="position:absolute;left:12px;top:0;white-space:nowrap">Um rosto diante</span>
+                    <span style="position:absolute;left:95px;top:40px;white-space:nowrap">da tela</span>
+                </h2>
+                <div class="bg" style="left:564px;top:84px;width:57px;height:125px;background:var(--marrom)"></div>
+                <p class="a ms t13 j k" style="left:50px;top:122px;width:278px;font-size:11.5px;line-height:16px"><b>Um</b> filtro pode parecer apenas uma brincadeira, mas suas escolhas têm uma direção. Afinar o nariz, reduzir lábios ou clarear a pele aproxima o rosto de uma norma quando essas alterações são oferecidas como embelezamento. Nem toda ferramenta faz isso, nem todo uso tem o mesmo sentido. A questão é perceber quais traços aparecem como algo a corrigir e quais permanecem como referência silenciosa de beleza.</p>
+                <p class="a ms t11 j k" style="left:372px;top:225px;width:202px">A circulação de criadores negros amplia repertórios, mas aparecer muito não garante autonomia. Quem cria pode depender de regras de distribuição, monetização e moderação que não controla. A pressão para caber no formato favorecido pela plataforma atravessa a maneira de se apresentar. O desafio é não confundir alcance com poder: uma imagem pode ser amplamente vista e, ainda assim, ter seu contexto e sua autoria enfraquecidos.<br><br>Responsabilizar plataformas significa cobrar testes com participação diversa, transparência sobre recursos de alteração facial e canais acessíveis de revisão. Autoria negra precisa estar também no desenvolvimento, na curadoria e nas decisões comerciais. Para quem usa, deve existir escolha informada, inclusive para recusar o filtro. O rosto diante da tela não é um defeito a otimizar é uma presença que tem direito a não ser corrigida.</p>
+                <div class="a" style="left:40px;top:301px;width:300px;height:252px;overflow:hidden">
+                    <img class="img" src="assets/diante-da-tela.png" alt="Retrato de mulher negra com cabelo crespo volumoso, sombra dourada e brinco em gota" style="left:0;top:-71px;width:300px;height:376px">
+                </div>
+                <p class="a ms t11 j k" style="left:49px;top:572px;width:279px">Algoritmos também podem reiterar hierarquias por meio dos dados com que são desenvolvidos e dos critérios usados para recomendar conteúdos. Esse fenômeno é chamado de racismo algorítmico: a tecnologia acaba aprendendo e reproduzindo os preconceitos que nós mesmos incorporamos nos dados e nas escolhas que a orientam. Seleções pouco diversas, decisões de classificação e incentivos ao engajamento não são neutros. Isso não autoriza afirmar que toda plataforma produz o mesmo resultado. Exige examinar os sistemas, tornar seus critérios discutíveis e permitir que efeitos discriminatórios sejam identificados e contestados.</p>
+                <p class="a pf i c e1" style="left:372px;top:704px;width:196px;font-size:16px;line-height:20px">Autoria negra também significa poder decidir como a tecnologia nos vê.</p>
+                <span class="pn k">9</span>
+            </section>
+        </div>
+
+        <!-- ============ PÁGINA 13: A INSEGURANÇA TAMBÉM DÁ LUCRO (PÁGINA 10 NA REVISTA) ============ -->
+        <div class="slot">
+            <section class="page" id="p-inseguranca" aria-label="A insegurança também dá lucro">
+                <img class="img" src="assets/inseguranca.png" alt="Retrato de mulher negra com cabelo liso na altura dos ombros" style="left:283px;top:0;width:320px;height:512px">
+                <div class="bg" style="left:-26px;top:36px;width:457px;height:378px;background:var(--vinho)"></div>
+                <h2 class="a pf b w" style="left:21px;top:48px;width:395px;font-size:34px;line-height:41px">A insegurança também dá lucro</h2>
+                <p class="a ms t11 w" style="left:234px;top:158px;width:183px">Estimativas comerciais globais para 2024 dimensionam o mercado de clareadores em US$ 11,15 bilhões e o de relaxantes capilares em US$ 698,6 milhões. Esses dados são estimativas de tamanho de mercado, não de lucro das empresas. Esses valores indicam escala econômica e como a indústria lucra em cima da dor e do sofrimento negro.</p>
+                <p class="a ms t11 w" style="left:21px;top:159px;width:202px"><b>Quando</b> alisar ou clarear é apresentado como condição de aceitação, a insegurança encontra uma oferta pronta. A promessa pode circular no anúncio, no conselho familiar ou na exigência profissional. O produto não cria sozinho a hierarquia, mas pode se apoiar nela para oferecer uma solução individual a uma pressão social. A crítica começa nessa relação: quem ganha quando a aparência passa a exigir uma correção contínua?</p>
+                <p class="a ms t11 e2" style="left:21px;top:429px;width:241px">Há desejos, hábitos, preferências e necessidades diferentes por trás de uma compra. Reconhecer esse campo de escolhas é indispensável para não culpabilizar quem alisa o cabelo ou usa um produto para a pele. A liberdade, porém, fica limitada quando apenas uma aparência recebe respeito. É possível defender a decisão individual e, ao mesmo tempo, contestar o ambiente que apresenta certos traços como obstáculo à vida social.<br><br>A responsabilidade empresarial envolve linguagem publicitária, segurança e informação clara sobre os produtos. Marcas devem evitar associar pele mais clara ou cabelo mais liso a superioridade, sucesso ou higiene.</p>
+                <p class="a ms t11 e2" style="left:290px;top:537px;width:278px">Oferecer alternativas de cuidado, sem transformar a diferença em falha, muda o sentido da venda. O enfrentamento também passa por instituições que não condicionem trabalho, afeto e reconhecimento à compra de uma aparência considerada adequada.</p>
+                <p class="a pf i c e1" style="left:320px;top:661px;width:222px;font-size:16px;line-height:20px">Questionar a pressão comercial não é condenar as escolhas de quem consome.</p>
+                <div class="bg" style="left:-8px;top:766px;width:619px;height:81px;background:var(--escuro-2)"></div>
+                <span class="pn w">10</span>
+                <div class="destaque" style="left:55px;top:778px;width:221px">
+                    <span class="valor">US$ 11,15 bi</span>
+                    <span class="contexto">Clareadores · mercado global estimado em 2024</span>
+                </div>
+                <div class="destaque" style="left:326px;top:778px;width:269px">
+                    <span class="valor">US$ 698,6 mi</span>
+                    <span class="contexto">Relaxantes capilares · mercado global estimado em 2024</span>
+                </div>
+            </section>
+        </div>
+
+        <!-- ============ PÁGINA 14: TONS QUE NÃO CHEGAM ÀS PRATELEIRAS (PÁGINA 11 NA REVISTA) ============ -->
+        <div class="slot">
+            <section class="page" id="p-tons" aria-label="Tons que não chegam às prateleiras">
+                <h2 class="a pf b c e2" style="left:58px;top:18px;width:479px;font-size:34px;line-height:41px">Tons que não chegam às prateleiras</h2>
+                <img class="img" src="assets/grafico.png" alt="Gráfico de barras — Percepção dos 60 estudantes em Ocara: 53,3% tiveram dificuldade para achar base; 83,3% consideram o mercado inacessível" style="left:255px;top:86px;width:314px;height:375px;object-fit:contain">
+                <div class="bg" style="left:-48px;top:533px;width:651px;height:324px;background:var(--terracota-2)"></div>
+                <div class="a ms j k" style="left:29px;top:109px;width:193px;font-size:11.5px;line-height:16px">
+                    <p style="line-height:16px">A base que não corresponde à pele revela um limite concreto da promessa de diversidade. Não basta oferecer uma gradação curta entre claro e escuro: subtons também importam, assim como o desempenho da fórmula. Quando o consumidor precisa misturar produtos ou adaptar um tom inadequado, assume o trabalho que deveria ter sido feito no desenvolvimento. A ausência não é apenas simbólica; interfere no uso cotidiano e no custo da compra.</p>
+                    <p style="margin-top:14px">Em Ocara, um estudo local com 60 estudantes registrou que 53,3% tiveram dificuldade para encontrar base e 83,3% consideraram o mercado inacessível. Os estudumos mostram como a oferta pode falhar para quem está diante da prateleira. O dado local merece atenção sem ser ampliado além do que permite</p>
+                    <p style="margin-top:14px">Diversidade no anúncio e acesso real são dimensões diferentes. Uma linha extensa no catálogo pode ter poucos tons no ponto de venda; uma campanha pode exibir peles negras enquanto o preço impede a compra. Distribuição, reposição e possibilidade de testar o produto precisam acompanhar a imagem. A pergunta não é apenas quantos tons a marca anuncia, mas quais chegam, permanecem disponíveis e podem ser adquiridos em condições viáveis..</p>
+                </div>
+                <p class="a ms t11 j k" style="left:266px;top:547px;width:293px">Marcas e varejistas podem enfrentar essa distância ouvindo consumidores negros, ampliando testes e acompanhando a disponibilidade por tom e subtom. A participação deve influenciar formulação, estoque e preço, não servir apenas ao lançamento. Informações consistentes ajudam a escolher sem depender de uma tentativa cara. Inclusão deixa de ser um gesto de campanha quando passa a organizar toda a experiência, da pesquisa do produto ao atendimento na loja.</p>
+                <div class="bg" style="left:567px;top:695px;width:47px;height:108px;background:var(--marrom)"></div>
+                <span class="pn w">11</span>
+            </section>
+        </div>
+
+        <!-- ============ PÁGINA 15: O PADRÃO É UMA QUESTÃO POLÍTICA ============ -->
+        <div class="slot">
+            <section class="page page--politica" id="p-politica" aria-label="O padrão é uma questão política">
+                <div class="politica-abertura">
+                    <h2 class="a pf b cr" style="left:0;top:11px;width:531px;font-size:34px;line-height:41px">O padrão é uma questão política</h2>
+                </div>
+                <div class="politica-chamada">
+                    <p class="a pf cr" style="left:18px;top:22px;width:495px;font-size:34px;line-height:41px;font-weight:700">Uma regra dita neutra pode escolher quem pertence.</p>
+                </div>
+                <div class="politica-corpo ms t11">
+                    <div class="politica-coluna" style="height:558px">
+                        <p><b>O</b> padrão de beleza se torna político quando define quem parece apto a trabalhar, aprender ou representar uma instituição. Regras de apresentação podem parecer neutras e, ainda assim, tomar a aparência branca como referência. No trabalho, na escola e na política, a exigência de discrição pode recair de forma desigual sobre cabelos e traços negros. A neutralidade precisa ser demonstrada nos critérios e nos efeitos, não apenas declarada.</p>
+                        <p>Normas de segurança ou higiene têm finalidades legítimas, mas não justificam preferências raciais disfarçadas. É necessário explicar a relação entre a regra e a atividade, verificar sua aplicação e permitir contestação. A avaliação profissional deve considerar competência; a escolar, aprendizagem. Quando o corpo negro precisa ser modificado para parecer respeitável, a instituição transforma um preconceito em condição de participação e limita o acesso a direitos.<br><br>Na educação, a Lei 10.639/2003 inclui o ensino de história e cultura afro-brasileira e africana. A Lei 11.645/2008 amplia essa obrigação para abranger também a história e a cultura indígenas. O cumprimento requer formação docente, materiais adequados e presença desses conteúdos no currículo, para além de datas comemorativas. Conhecer trajetórias e produções negras ajuda a questionar as hierarquias que a escola pode reproduzir no cotidiano.</p>
+                    </div>
+                    <div class="politica-coluna" style="height:334px">
+                        <p>A escola ocupa uma posição decisiva nesse processo. Comentários sobre cabelo, silêncio diante de ofensas e imagens que excluem protagonismos negros educam tanto quanto uma aula. Enfrentá-los requer formação, materiais diversos e compromisso institucional, em vez de pedir à criança que aprenda sozinha a suportar a rejeição.</p>
+                        <p>A mudança exige pessoas negras nos espaços que decidem contratação, currículo e políticas públicas, com condições de influenciar escolhas. Também requer fiscalização, canais de denúncia e revisão de procedimentos discriminatórios. Representar não é apenas aparecer na fotografia institucional. É participar da definição do que se cobra e do que se protege. Sem redistribuir essa autoridade, o padrão continua sendo apresentado como gosto, embora organize oportunidades e exclusões.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ============ PÁGINA 16: BELEZA TAMBÉM É MEMÓRIA (PÁGINA 13 NA REVISTA) ============ -->
+        <div class="slot">
+            <section class="page" id="p-memoria" aria-label="Beleza também é memória">
+                <div class="bg" style="left:-31px;top:0;width:651px;height:126px;background:var(--escuro)"></div>
+                <h2 class="a pf b cr" style="left:24px;top:28px;width:574px;font-size:34px;line-height:41px">Beleza também é memória</h2>
+                <p class="a ms l i w t12" style="left:24px;top:71px;width:568px">Há histórias que passam de mão em mão e também se trançam nos cabelos.</p>
+                <div class="bg" style="left:266px;top:96px;width:313px;height:595px;background:var(--terracota-2)"></div>
+                <img class="img" src="assets/beleza-memoria.png" alt="Mulheres negras com tranças e búzios vistas de cima" style="left:-9px;top:110px;width:199px;height:188px">
+                <h3 class="a pf b c k" style="left:292px;top:110px;width:248px;font-size:34px;line-height:41px">A memória também passa pelas mãos que cuidam.</h3>
+                <div class="a ms t12 k pl" style="left:281px;top:212px;width:289px">
+                    <p>Em muitas famílias e comunidades negras, cuidar e trançar os cabelos é um gesto compartilhado entre gerações. Mãos que dividem técnicas, histórias e afeto transformam o cuidado em vínculo. Tranças e outros penteados podem carregar referências culturais e afirmar pertencimentos embora seus sentidos variem de pessoa para pessoa.</p>
+                    <p>Essa história também é marcada pela violência. Por séculos, traços negros foram tratados como sinais de inadequação, e o cabelo crespo foi pressionado a se esconder ou se modificar para caber em padrões brancos. Ainda assim, ele nunca foi apenas alvo da rejeição: também é expressão, criação e continuidade.</p>
+                    <p>Ao relacionar corpo e cabelo à identidade negra, Nilma Lino Gomes ajuda a compreender que desvalorizar a estética negra atinge também as memórias e os saberes que ela carrega. Valorizar esses cabelos é reconhecer que beleza pode ser herança viva uma história que permanece no cuidado, nas escolhas e na liberdade de cada pessoa.</p>
+                </div>
+                <div class="a ms t12 j pl" style="left:23px;top:320px;width:223px;color:var(--marrom)">
+                    <p>A memória não se guarda apenas em documentos. Ela também circula nos gestos de cuidado, nas conversas durante um penteado e nos modos de aprender a lidar com o próprio corpo. Entre gerações, esses encontros podem transmitir repertórios que a desvalorização racial procurou interromper.</p>
+                    <p>Referências africanas e afro-brasileiras são plurais. Não formam uma tradição única, imóvel ou comum a todas as pessoas negras. Seus sentidos variam, atravessam territórios e se transformam com novas experiências. Reconhecer essa diversidade evita converter ancestralidade em uma imagem rígida que todos deveriam reproduzir.</p>
+                    <p>O trabalho de Nilma Lino Gomes oferece uma leitura do corpo e do cabelo como participantes da construção identitária. A dimensão educativa aparece nas relações: aprender a cuidar pode significar encontrar palavras para contestar uma ofensa e referências para reconhecer valor onde antes se ensinou vergonha.</p>
+                </div>
+                <p class="a ms t12 j" style="left:271px;top:708px;width:302px;color:var(--marrom)">Valorizar a memória não significa fiscalizar escolhas. Quem muda o cabelo ou experimenta outra estética não abandona necessariamente sua história. O enfrentamento ao racismo precisa ampliar repertórios e proteger a liberdade de construir a própria imagem, sem substituir a antiga imposição por outra regra de autenticidade.</p>
+                <span class="pn k">13</span>
+            </section>
+        </div>
+
+        <!-- ============ PÁGINA 17: MARCHA DO ORGULHO CRESPO (PÁGINA 14 NA REVISTA) ============ -->
+        <div class="slot">
+            <section class="page" id="p-marcha" aria-label="Marcha do Orgulho Crespo">
+                <div class="bg" style="left:32px;top:27px;width:570px;height:85px;background:var(--nude)"></div>
+                <h2 class="a pf b k" style="left:53px;top:40px;width:528px;font-size:34px;line-height:41px;white-space:nowrap">Marcha do Orgulho Crespo</h2>
+                <img class="img" src="assets/marcha-2.png" alt="Manifestantes na Marcha do Orgulho Crespo segurando faixa; uma pessoa veste jaqueta com a frase Black Lives Matter" style="left:323px;top:138px;width:303px;height:227px">
+                <p class="a ms t13 j k" style="left:26px;top:164px;width:262px"><b>A</b> Marcha do Orgulho Crespo de São Paulo começou em 2015. Ao levar o cabelo crespo ao espaço público como afirmação coletiva, deslocou uma experiência muitas vezes tratada como assunto privado. A rua permite que corpos, penteados e vozes se encontrem sem pedir autorização a um padrão de beleza. A presença não precisa ser uniforme para ter força: pode reunir sentidos diferentes de identidade, memória e participação política.</p>
+                <img class="img" src="assets/marcha-1.png" alt="Pessoa de costas com cabelo crespo e pentes garfo espetados, sobre fundo vermelho" style="left:-28px;top:349px;width:306px;height:219px">
+                <p class="a ms t11 j e2" style="left:323px;top:391px;width:262px">Em 2018, uma lei estadual paulista instituiu 26 de julho como Dia do Orgulho Crespo. O reconhecimento pertence ao âmbito do estado de São Paulo, não a uma lei nacional. Uma data pública pode favorecer memória e debate, mas não substitui ações contra a discriminação. Seu valor depende também do que mobiliza: educação, visibilidade para as reivindicações e compromisso de instituições com o direito de usar o próprio cabelo.</p>
+                <div class="bg" style="left:-38px;top:585px;width:651px;height:324px;background:var(--vinho)"></div>
+                <p class="a ms t11 j w" style="left:24px;top:619px;width:251px">A marcha se conecta a redes de cuidado que circulam em encontros, salões e ambientes digitais. Compartilhar técnicas, experiências e repertórios pode reduzir o isolamento diante da desvalorização. Esses vínculos não apagam divergências nem produzem uma identidade única. Oferecem condições para que escolhas sejam menos solitárias e para que o conhecimento sobre o cabelo crespo seja reconhecido como prática cultural, educativa e profissional.</p>
+                <p class="a ms t11 j w" style="left:318px;top:619px;width:251px">Além da celebração, a pauta alcança trabalho, escola e acesso a produtos e serviços. O cabelo que recebe aplauso na rua não pode continuar sendo tratado como inadequado em uma entrevista ou sala de aula. A ocupação pública cobra essa coerência. Preservar a dimensão política do orgulho é ligar a festa à mudança das regras, ao acolhimento de denúncias e ao reconhecimento de quem sustenta essas redes no cotidiano.</p>
+                <span class="pn w">14</span>
+            </section>
+        </div>
+
+        <!-- ============ PÁGINA 18: OUTRAS FORMAS DE DIZER: EXISTIMOS (PÁGINA 15 NA REVISTA) ============ -->
+        <div class="slot">
+            <section class="page" id="p-existimos" aria-label="Outras formas de dizer: existimos">
+                <h2 class="a pf b k" style="left:27px;top:13px;width:574px;font-size:34px;line-height:41px">Outras formas de dizer: existimos</h2>
+                <div class="bg" style="left:23px;top:113px;width:549px;height:102px;background:var(--marrom)"></div>
+                <p class="a ms l i t12 w" style="left:38px;top:124px;width:520px;white-space:nowrap">A afirmação coletiva amplia escolhas: não deve instituir outra obrigação estética</p>
+                <p class="a pf b w" style="left:38px;top:135px;width:490px;font-size:34px;line-height:41px">Não existe uma única aparência capaz de provar quem somos.</p>
+                <img class="img" src="assets/existimos.png" alt="Manifestação com cartaz escrito Black Power solto, balance! e mulheres negras gritando" style="left:314px;top:197px;width:306px;height:219px">
+                <p class="a ms t12 j" style="left:23px;top:222px;width:270px;color:var(--marrom)"><b>A</b> transição capilar pode envolver cortes, convivência entre texturas e descoberta de cuidados. Também pode trazer hesitação, prazer ou cansaço. Não há um roteiro obrigatório nem uma conclusão igual para todas as pessoas, algumas encontram nesse processo uma aproximação com a identidade negra e com referências antes desvalorizadas; outras o vivem por razões diferentes. Alisar, raspar, trançar ou deixar os fios crescerem são escolhas que ganham sentidos próprios em cada trajetória. Respeitar essa pluralidade é reconhecer que nenhuma aparência deve se tornar condição para pertencer.<br><br><br>Esse percurso, porém, não acontece no vazio. Comentários na escola, no trabalho e até na família podem transformar uma escolha estética em tentativa de escapar do julgamento. Em contrapartida, espaços de acolhimento e troca de saberes sobre cuidados ajudam a construir outras referências. O apoio não deve cobrar uma aparência específica; deve garantir que cada pessoa possa decidir sem medo de punição ou rejeição.</p>
+                <p class="a ms t12 j" style="left:314px;top:431px;width:258px;color:var(--marrom)"><b>A</b> Geração Tombamento tornou visíveis maneiras de afirmar presença por meio de moda, música e redes. Cores, penteados e gestos podem deslocar o repertório que reduz a juventude negra à falta ou à ameaça. Mais que um estilo fechado, interessa a disputa pela autoria: criar a própria imagem, compartilhar referências e produzir narrativas. Essas expressões são diversas e não representam automaticamente toda a juventude ou toda experiência negra.<br><br><br>A visibilidade, porém, não encerra a disputa. Quando marcas e meios de comunicação incorporam referências negras sem reconhecer quem as criou nem abrir espaço real para esses criadores, a expressão pode virar tendência rentável enquanto as desigualdades permanecem. Por isso, autoria importa tanto quanto presença: jovens negros precisam participar das decisões, da produção e dos benefícios gerados pelas imagens que ajudam a criar.</p>
+                <div class="bg" style="left:-22px;top:654px;width:306px;height:219px;background:var(--cinza)"></div>
+                <span class="pn k">15</span>
+            </section>
+        </div>
+
+        <!-- ============ PÁGINA 19: O QUE PRECISA MUDAR (PÁGINA 16 NA REVISTA) ============ -->
+        <div class="slot">
+            <section class="page" id="p-mudar" aria-label="O que precisa mudar">
+                <div class="bg" style="left:-23px;top:19px;width:570px;height:67px;background:var(--nude)"></div>
+                <h2 class="a pf b e2" style="left:24px;top:19px;width:443px;font-size:34px;line-height:41px;white-space:nowrap">O que precisa mudar</h2>
+                <div class="a ms j e2" style="left:24px;top:110px;width:262px;font-size:11.5px;line-height:16px">
+                    <p style="line-height:16px"><b>Enfrentar</b> o racismo estético exige mudar quem decide e com quais critérios. Mídia e empresas devem garantir protagonismo negro também na criação, na direção e na aprovação de campanhas. Acompanhamento precisa considerar papéis, narrativas e condições de trabalho, não apenas contar presenças. O Estado pode incorporar esses critérios a editais, contratos e comunicação pública, exigir prestação de contas e cobrar correções quando houver exclusão.</p>
+                    <p style="margin-top:14px">Empresas de beleza e varejistas precisam assegurar variedade acessível de produtos, com tons, subtons e cuidados adequados. Isso implica pesquisar com consumidores negros, verificar estoque, preço e distribuição e dar resposta às falhas relatadas. Plataformas devem examinar filtros e sistemas de recomendação, esclarecer critérios e oferecer revisão acessível. A participação negra nas decisões é parte dessas medidas, não um recurso visual para anunciar compromisso.</p>
+                    <p style="margin-top:14px">Escolas devem implementar o ensino de história e cultura afro-brasileira, africana e indígena, com formação docente e materiais que sustentem o trabalho ao longo do currículo. Empresas, escolas e órgãos públicos precisam de protocolos para enfrentar a discriminação: acolher relatos, registrar casos, apurar com responsabilidade e proteger contra retaliações. Normas de aparência devem ser revistas para que segurança e organização não sirvam de pretexto ao racismo.</p>
+                </div>
+                <p class="a ms t11 j e2" style="left:310px;top:110px;width:262px">As mudanças precisam chegar às experiências concretas: à campanha que não reduz, à regra que não constrange, ao produto que não exclui e à escola que não silencia. Cada instituição deve acompanhar seus resultados e rever práticas quando a desigualdade persistir. A responsabilidade por enfrentar o racismo não pode recair sobre quem o sofre, mas sobre as estruturas que o reproduzem.<br><br>Reparar também não é impor outra forma de ser negro. Cabelo natural, alisado, trançado ou raspado: nenhuma escolha deve servir de prova de identidade, resistência ou pertencimento. Enfrentar o racismo estético é garantir às pessoas negras o direito de decidir sobre a própria imagem e de serem respeitadas sem negociação.</p>
+                <img class="img" src="assets/ultima-pagina.png" alt="Mulher negra de vestido listrado com mãos brancas cobrindo sua boca e segurando seus braços" style="left:316px;top:412px;width:283px;height:400px">
+                <blockquote class="a pf b c bo" style="left:19px;top:699px;width:278px;font-size:18px;line-height:19px">“Enquanto o poder de decisão estiver nas mãos que tentam nos calar, qualquer nova cor nas prateleiras será apenas silêncio disfarçado de avanço.</blockquote>
+                <span class="pn k">16</span>
+            </section>
+        </div>
+
+    </main>
+
+    <!-- Barra de Controle do Leitor Digital -->
+    <nav class="toolbar" aria-label="Controles do Leitor">
+        <div class="toolbar-group">
+            <button type="button" class="toolbar-btn" id="btn-prev" aria-label="Página anterior" title="Página anterior (←)">❮</button>
+            <span class="toolbar-label" id="cur-page-num">1 / 19</span>
+            <button type="button" class="toolbar-btn" id="btn-next" aria-label="Próxima página" title="Próxima página (→)">❯</button>
+        </div>
+
+        <div class="toolbar-sep"></div>
+
+        <div class="toolbar-group">
+            <button type="button" class="toolbar-btn active" data-view-mode="continuous" title="Rolagem contínua">Contínuo</button>
+            <button type="button" class="toolbar-btn" data-view-mode="single" title="Página única">Simples</button>
+            <button type="button" class="toolbar-btn" data-view-mode="spread" title="Páginas duplas (Spread)">Dupla</button>
+        </div>
+
+        <div class="toolbar-sep"></div>
+
+        <div class="toolbar-group">
+            <button type="button" class="toolbar-btn" id="btn-zoom-out" aria-label="Diminuir zoom" title="Zoom -">−</button>
+            <span class="toolbar-label" id="zoom-val">100%</span>
+            <button type="button" class="toolbar-btn" id="btn-zoom-in" aria-label="Aumentar zoom" title="Zoom +">+</button>
+            <button type="button" class="toolbar-btn" id="btn-zoom-fit" title="Ajustar automaticamente à tela">Ajustar</button>
+        </div>
+
+        <div class="toolbar-sep"></div>
+
+        <div class="toolbar-group">
+            <button type="button" class="toolbar-btn" id="btn-fullscreen" title="Tela cheia">⛶</button>
+        </div>
+    </nav>
+
+    <!-- Modal: QR Code para ouvir a música (página 6) -->
+    <div class="modal" id="modal-musica" role="dialog" aria-modal="true" aria-labelledby="modal-musica-titulo" hidden>
+        <div class="modal__card">
+            <button type="button" class="modal__close" data-close aria-label="Fechar">&times;</button>
+            <h3 id="modal-musica-titulo">Respeitem Meus Cabelos, Brancos</h3>
+            <p>Chico César</p>
+            <img id="qr-musica" alt="QR Code para ouvir a música Respeitem Meus Cabelos, Brancos">
+            <a id="link-musica" target="_blank" rel="noopener">▶ Ouvir a música</a>
+        </div>
+    </div>
+
+    <script src="scripts/script.js"></script>
 </body>
 
 </html>

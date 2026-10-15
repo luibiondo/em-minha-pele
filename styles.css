@@ -1,0 +1,677 @@
+/* ==========================================================
+   EM MINHA PELE — Revista digital
+   Layout fiel ao Figma (frame "V1"): páginas A4 595 × 842 px,
+   elementos posicionados com as coordenadas exatas do design.
+   ========================================================== */
+
+:root {
+  /* Paleta extraída diretamente do Figma */
+  --bg: #2B2B2B;
+  /* fundo do canvas V1 */
+  --vinho: #620909;
+  --bordo: #3B0811;
+  --marrom: #562A13;
+  --terracota: #A96B4C;
+  --terracota-2: #A86B4B;
+  --nude: #D5B6A6;
+  --escuro: #350000;
+  --escuro-2: #2E060D;
+  --creme: #F7F1E8;
+  --magenta: #530622;
+  --cinza: #D9D9D9;
+
+  --page-w: 595px;
+  --page-h: 842px;
+  --scale: 1;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  background: var(--bg);
+  min-height: 100vh;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  color: #000;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  padding-bottom: 72px;
+  /* Espaço para a toolbar */
+}
+
+/* ---------- Galeria de páginas ---------- */
+.revista {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 48px;
+  padding: 48px 16px;
+  max-width: calc(var(--page-w) * 2 * var(--scale) + 48px + 32px);
+  margin: 0 auto;
+  transition: all .3s ease;
+}
+
+/* Modos de visualização alternativos */
+.revista.revista--single {
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  padding: 24px 0 80px;
+}
+
+.revista.revista--spread {
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  padding: 24px 0 80px;
+  max-width: none;
+}
+
+/* O "slot" reserva o espaço da página já escalada */
+.slot {
+  width: calc(var(--page-w) * var(--scale));
+  height: calc(var(--page-h) * var(--scale));
+  flex: none;
+}
+
+.page {
+  position: relative;
+  width: var(--page-w);
+  height: var(--page-h);
+  overflow: hidden;
+  /* frames do Figma recortam o conteúdo */
+  background: #fff;
+  transform: scale(var(--scale));
+  transform-origin: top left;
+  box-shadow: 9px 9px 0.5px rgba(0, 0, 0, 0.25);
+  transition: outline .3s ease;
+}
+
+.page-highlight {
+  outline: 4px solid var(--terracota) !important;
+  outline-offset: 4px;
+}
+
+/* ---------- Utilitários de Posicionamento e Tipografia ---------- */
+.a {
+  position: absolute;
+}
+
+.bg {
+  position: absolute;
+}
+
+/* blocos de cor */
+.img {
+  position: absolute;
+  display: block;
+  object-fit: cover;
+}
+
+.round {
+  border-radius: 50%;
+}
+
+.pf {
+  font-family: 'Playfair Display', serif;
+}
+
+.ms {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.b {
+  font-weight: 700;
+}
+
+.m5 {
+  font-weight: 500;
+}
+
+.l {
+  font-weight: 400;
+}
+
+/* Textos são regular 400 */
+.i {
+  font-style: italic;
+}
+
+.j {
+  text-align: justify;
+}
+
+.c {
+  text-align: center;
+}
+
+.r {
+  text-align: right;
+}
+
+.w {
+  color: #fff;
+}
+
+.k {
+  color: #000;
+}
+
+.cr {
+  color: var(--creme);
+}
+
+.mr {
+  color: var(--marrom);
+}
+
+.bo {
+  color: var(--bordo);
+}
+
+.e1 {
+  color: var(--escuro);
+}
+
+.e2 {
+  color: var(--escuro-2);
+}
+
+/* Regras globais: Títulos (Playfair bold 34) e Textos (Montserrat regular 11.5) */
+h2,
+h3,
+.titulo,
+.pf-title {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 34px;
+  line-height: 41px;
+}
+
+p,
+.texto-corpo {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 11.5px;
+  line-height: 16px;
+}
+
+/* Tamanhos de texto padronizados para Montserrat regular 11.5px / 16px */
+.t8 {
+  font-size: 11.5px;
+  line-height: 16px;
+  font-weight: 400;
+}
+
+.t10 {
+  font-size: 11.5px;
+  line-height: 16px;
+  font-weight: 400;
+}
+
+.t11 {
+  font-size: 11.5px;
+  line-height: 16px;
+  font-weight: 400;
+}
+
+.t12 {
+  font-size: 11.5px;
+  line-height: 16px;
+  font-weight: 400;
+}
+
+.t13 {
+  font-size: 11.5px;
+  line-height: 16px;
+  font-weight: 400;
+}
+
+/* Espaçamento de parágrafos */
+.ps p+p {
+  margin-top: 10px;
+}
+
+.pl p+p {
+  margin-top: 26px;
+}
+
+/* Número de página */
+.pn {
+  position: absolute;
+  left: 569px;
+  top: 774px;
+  height: 29px;
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 90px;
+  white-space: nowrap;
+}
+
+/* Sombra de texto (Drop shadow do Figma) */
+.sh-xl {
+  text-shadow: 8.05px 4.02px 4.02px rgba(0, 0, 0, 0.25);
+}
+
+.sh {
+  text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+/* Texto vertical "EDITORIAL" (rotacionado -90° no Figma) */
+.vertical {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  white-space: nowrap;
+}
+
+/* ---------- Índice interativo ---------- */
+.idx-item {
+  text-decoration: none;
+  cursor: pointer;
+  display: block;
+}
+
+.idx-item:hover .idx-t {
+  text-decoration: underline;
+  color: var(--vinho);
+}
+
+.idx-n {
+  position: absolute;
+  width: 39px;
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 27px;
+  line-height: 36px;
+  color: var(--marrom);
+}
+
+.idx-t {
+  position: absolute;
+  width: 196px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 11.5px;
+  line-height: 15px;
+  color: var(--bordo);
+  transition: color .2s ease;
+}
+
+/* ---------- Autores ---------- */
+.autor-foto {
+  position: absolute;
+  width: 107px;
+  height: 107px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.autor-nome {
+  position: absolute;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 11.5px;
+  line-height: 14px;
+  color: #fff;
+  white-space: nowrap;
+}
+
+/* ---------- Destaques numéricos ---------- */
+.destaque {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.destaque .valor {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 32px;
+  color: var(--creme);
+  white-space: nowrap;
+}
+
+.destaque .contexto {
+  font-size: 8px;
+  line-height: 11px;
+  color: var(--nude);
+  white-space: nowrap;
+}
+
+/* ---------- Página "O padrão é uma questão política" (auto layout) ---------- */
+.page--politica {
+  background: var(--escuro);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 32px 32px 30px;
+}
+
+.politica-abertura {
+  position: relative;
+  width: 531px;
+  height: 112px;
+  flex: none;
+}
+
+.politica-chamada {
+  position: relative;
+  width: 531px;
+  height: 86px;
+  flex: none;
+  background: var(--marrom);
+}
+
+.politica-corpo {
+  width: 531px;
+  height: 558px;
+  flex: none;
+  display: flex;
+  gap: 24px;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.politica-coluna {
+  width: 253px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--creme);
+}
+
+/* ---------- Elementos interativos ---------- */
+.hotspot {
+  position: absolute;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  outline-offset: 3px;
+  transition: box-shadow .2s ease;
+}
+
+.hotspot:hover,
+.hotspot:focus-visible {
+  box-shadow: inset 0 0 0 2px rgba(255, 255, 255, .55);
+}
+
+/* Gráfico revelado ao clicar no box (página 8) */
+.box-grafico {
+  position: absolute;
+  left: 332px;
+  top: 139px;
+  width: 245px;
+  height: 215px;
+  background: var(--terracota);
+  padding: 14px 16px 12px;
+  color: #fff;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .25s ease, visibility .25s;
+  cursor: pointer;
+  z-index: 5;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.35);
+}
+
+.box-grafico.is-open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.box-grafico h4 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 13px;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  color: var(--creme);
+}
+
+.box-grafico .barras {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-around;
+  height: 120px;
+  margin-top: 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, .6);
+  padding-bottom: 2px;
+}
+
+.box-grafico .barra {
+  width: 58px;
+  background: var(--vinho);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transform-origin: bottom;
+  transform: scaleY(0);
+  transition: transform .6s cubic-bezier(.2, .7, .2, 1);
+}
+
+.box-grafico.is-open .barra {
+  transform: scaleY(1);
+}
+
+.box-grafico .legendas {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 6px;
+  text-align: center;
+}
+
+.box-grafico .legendas strong {
+  display: block;
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  line-height: 24px;
+}
+
+.box-grafico .legendas span {
+  font-size: 8px;
+  line-height: 11px;
+  color: var(--nude);
+}
+
+/* Modal da música (página 6) */
+.modal {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: rgba(0, 0, 0, .75);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .25s ease, visibility .25s;
+  z-index: 200;
+  padding: 16px;
+}
+
+.modal.is-open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal__card {
+  position: relative;
+  width: min(340px, 100%);
+  background: var(--marrom);
+  color: #fff;
+  padding: 28px 24px 24px;
+  text-align: center;
+  box-shadow: 9px 9px 0.5px rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.modal__card h3 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 27px;
+}
+
+.modal__card p {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 11.5px;
+  line-height: 16px;
+  margin-top: 6px;
+  color: var(--nude);
+}
+
+.modal__card img {
+  display: block;
+  width: 180px;
+  height: 180px;
+  margin: 18px auto;
+  background: #fff;
+  padding: 8px;
+  border-radius: 4px;
+}
+
+.modal__card a {
+  display: inline-block;
+  background: var(--terracota);
+  color: #fff;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 11.5px;
+  padding: 10px 20px;
+  border-radius: 2px;
+  transition: background .2s ease;
+}
+
+.modal__card a:hover {
+  background: var(--vinho);
+}
+
+.modal__close {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  background: none;
+  border: 0;
+  color: #fff;
+  font-size: 28px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+/* ---------- Barra de Ferramentas / Leitor ---------- */
+.toolbar {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(30, 30, 30, 0.92);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 8px 16px;
+  border-radius: 40px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  z-index: 100;
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 11.5px;
+  user-select: none;
+}
+
+.toolbar-group {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.toolbar-sep {
+  width: 1px;
+  height: 18px;
+  background: rgba(255, 255, 255, 0.2);
+  margin: 0 4px;
+}
+
+.toolbar-btn {
+  background: transparent;
+  border: 0;
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 20px;
+  font-family: inherit;
+  font-weight: 400;
+  font-size: 11.5px;
+  cursor: pointer;
+  transition: background .2s ease, color .2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.toolbar-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.toolbar-btn.active {
+  background: var(--terracota);
+  color: #fff;
+  font-weight: 700;
+}
+
+.toolbar-label {
+  padding: 0 6px;
+  font-variant-numeric: tabular-nums;
+  color: var(--creme);
+  font-weight: 500;
+}
+
+/* Impressão */
+@media print {
+  body {
+    background: #fff;
+    padding: 0;
+  }
+
+  .toolbar,
+  .modal {
+    display: none !important;
+  }
+
+  .revista {
+    display: block;
+    padding: 0;
+    gap: 0;
+    max-width: none;
+  }
+
+  .slot {
+    width: var(--page-w);
+    height: var(--page-h);
+    page-break-after: always;
+  }
+
+  .page {
+    transform: none;
+    box-shadow: none;
+  }
+}
