@@ -16,11 +16,11 @@
 
 <body>
 
-    <main class="revista revista--continuous">
+    <main class="revista revista--spread" id="revista-main">
 
         <!-- ============ PÁGINA 1: CAPA ============ -->
         <div class="slot">
-            <section class="page" id="p-capa" aria-label="Capa">
+            <section class="page" id="p-capa" aria-label="Capa" data-density="hard">
                 <img class="img" src="assets/capa-revista.png" alt="Mulher negra com vestido listrado rosa cercada por mãos brancas que cobrem sua boca e seguram seu corpo" style="left:-6px;top:-160px;width:602px;height:1014px">
                 <p class="a ms r w" style="left:173px;top:7px;width:163px;font-size:11.5px;line-height:15px">Edição 1<span style="display:inline-block;width:19px"></span><br>Outubro 2026</p>
                 <h1 class="a pf b w sh-xl" style="left:32px;top:21px;width:375px;font-size:96px;line-height:128px">EM MINHA PELE</h1>
@@ -399,39 +399,45 @@ O impacto dessa hierarquia ultrapassa as telas e alcança a relação das pessoa
             </section>
         </div>
 
+        <!-- ============ PÁGINA 20: CONTRACAPA DA REVISTA ============ -->
+        <div class="slot">
+            <section class="page" id="p-contracapa" aria-label="Contracapa da revista" data-density="hard" style="background:var(--escuro)">
+                <div class="bg" style="left:0;top:0;width:595px;height:842px;background:radial-gradient(ellipse at 50% 35%, var(--vinho) 0%, var(--escuro) 80%)"></div>
+                <div class="bg" style="left:0;top:0;width:24px;height:842px;background:linear-gradient(to right, rgba(0,0,0,0.5), transparent)"></div>
+                
+                <div class="a" style="left:40px;top:120px;width:515px;text-align:center">
+                    <span class="ms r w" style="font-size:12px;letter-spacing:4px;text-transform:uppercase;opacity:0.85">Edição 1 · Outubro 2026</span>
+                    <h2 class="pf b w sh-xl" style="font-size:56px;line-height:68px;letter-spacing:1px;margin-top:16px">EM MINHA PELE</h2>
+                    <div style="width:60px;height:3px;background:var(--terracota);margin:20px auto"></div>
+                    <p class="ms r w" style="font-size:13px;letter-spacing:2px;font-style:italic">Beleza que resiste, identidade que permanece</p>
+                </div>
+
+                <div class="a" style="left:60px;top:320px;width:475px;text-align:center">
+                    <blockquote class="pf i w" style="font-size:18px;line-height:28px;color:var(--creme)">
+                        “Reconhecer nossos traços é também recuperar o direito de existir com dignidade, beleza e autonomia.”
+                    </blockquote>
+                </div>
+
+                <div class="a" style="left:70px;top:450px;width:455px;border-top:1px solid rgba(213,182,166,0.3);border-bottom:1px solid rgba(213,182,166,0.3);padding:24px 0;text-align:center">
+                    <p class="ms w b" style="font-size:11px;letter-spacing:2px;margin-bottom:12px;color:var(--terracota)">AUTORES DA REVISTA</p>
+                    <p class="ms" style="font-size:12px;color:var(--creme);line-height:22px">
+                        Beatriz H Carvalho · Gustavo H L Munhoz · Isabella C Camargo<br>
+                        Luigi A Biondo · Natalia C L Flores · Rodrigo Bolgheroni
+                    </p>
+                </div>
+
+                <div class="a" style="left:40px;bottom:40px;width:515px;text-align:center;color:var(--nude);font-size:11.5px;line-height:18px">
+                    <p style="letter-spacing:1px;color:#fff;font-weight:600">Instituto J&F · Projeto Revista Digital</p>
+                    <p style="opacity:0.75;margin-top:4px">Diagramação desenvolvida com HTML5, CSS3, WebGL e Canvas</p>
+                </div>
+            </section>
+        </div>
+
     </main>
 
-    <!-- Barra de Controle do Leitor Digital -->
-    <nav class="toolbar" aria-label="Controles do Leitor">
-        <div class="toolbar-group">
-            <button type="button" class="toolbar-btn" id="btn-prev" aria-label="Página anterior" title="Página anterior (←)">❮</button>
-            <span class="toolbar-label" id="cur-page-num">1 / 19</span>
-            <button type="button" class="toolbar-btn" id="btn-next" aria-label="Próxima página" title="Próxima página (→)">❯</button>
-        </div>
-
-        <div class="toolbar-sep"></div>
-
-        <div class="toolbar-group">
-            <button type="button" class="toolbar-btn active" data-view-mode="continuous" title="Rolagem contínua">Contínuo</button>
-            <button type="button" class="toolbar-btn" data-view-mode="single" title="Página única">Simples</button>
-            <button type="button" class="toolbar-btn" data-view-mode="spread" title="Páginas duplas (Spread)">Dupla</button>
-        </div>
-
-        <div class="toolbar-sep"></div>
-
-        <div class="toolbar-group">
-            <button type="button" class="toolbar-btn" id="btn-zoom-out" aria-label="Diminuir zoom" title="Zoom -">−</button>
-            <span class="toolbar-label" id="zoom-val">100%</span>
-            <button type="button" class="toolbar-btn" id="btn-zoom-in" aria-label="Aumentar zoom" title="Zoom +">+</button>
-            <button type="button" class="toolbar-btn" id="btn-zoom-fit" title="Ajustar automaticamente à tela">Ajustar</button>
-        </div>
-
-        <div class="toolbar-sep"></div>
-
-        <div class="toolbar-group">
-            <button type="button" class="toolbar-btn" id="btn-fullscreen" title="Tela cheia">⛶</button>
-        </div>
-    </nav>
+    <!-- Navegação discreta nas laterais (sem toolbar) -->
+    <button type="button" class="nav-arrow nav-arrow--prev" id="btn-prev" aria-label="Página anterior">❮</button>
+    <button type="button" class="nav-arrow nav-arrow--next" id="btn-next" aria-label="Próxima página">❯</button>
 
     <!-- Modal: QR Code para ouvir a música (página 6) -->
     <div class="modal" id="modal-musica" role="dialog" aria-modal="true" aria-labelledby="modal-musica-titulo" hidden>
@@ -444,6 +450,88 @@ O impacto dessa hierarquia ultrapassa as telas e alcança a relação das pessoa
         </div>
     </div>
 
+    <!-- Modal do Laboratório WebGL & Shaders (Canvas 3D) -->
+    <div class="modal modal--webgl" id="modal-webgl" role="dialog" aria-modal="true" aria-labelledby="modal-webgl-title" hidden>
+        <div class="modal__card modal__card--webgl">
+            <header class="modal__header">
+                <div>
+                    <span class="modal__badge">GPU Acceleration & GLSL</span>
+                    <h3 id="modal-webgl-title">Laboratório WebGL — Animação de Curvatura de Página (Page Curl)</h3>
+                </div>
+                <button type="button" class="modal__close" data-close aria-label="Fechar">&times;</button>
+            </header>
+
+            <div class="webgl-lab-content">
+                <!-- Coluna da Esquerda: Canvas WebGL Interativo -->
+                <div class="webgl-viewport-col">
+                    <div class="webgl-canvas-box">
+                        <canvas id="webgl-canvas" width="600" height="450"></canvas>
+                        <div class="webgl-fps-badge" id="webgl-fps">WebGL 60 FPS</div>
+                    </div>
+
+                    <!-- Controles Interativos dos Shaders -->
+                    <div class="webgl-controls">
+                        <div class="webgl-control-row">
+                            <label for="webgl-progress">Progresso da Curva (<code>u_progress</code>): <span id="val-progress">35%</span></label>
+                            <input type="range" id="webgl-progress" min="0" max="100" value="35" step="1">
+                        </div>
+                        <div class="webgl-control-row">
+                            <label for="webgl-angle">Ângulo de Dobra (<code>u_angle</code>): <span id="val-angle">15°</span></label>
+                            <input type="range" id="webgl-angle" min="-45" max="45" value="15" step="1">
+                        </div>
+                        <div class="webgl-control-row">
+                            <label for="webgl-radius">Raio do Cilindro (<code>u_radius</code>): <span id="val-radius">0.14</span></label>
+                            <input type="range" id="webgl-radius" min="6" max="30" value="14" step="1">
+                        </div>
+
+                        <div class="webgl-control-buttons">
+                            <button type="button" class="lab-btn" id="btn-webgl-animate">▶ Animar Automático</button>
+                            <button type="button" class="lab-btn" id="btn-webgl-wireframe">🕸 Alternar Wireframe</button>
+                            <button type="button" class="lab-btn" id="btn-webgl-light">💡 Alternar Iluminação</button>
+                            <select id="webgl-texture-select" class="lab-select">
+                                <option value="capa">Textura: Capa da Revista</option>
+                                <option value="licenca">Textura: A Beleza Não Pede Licença</option>
+                                <option value="anunciada">Textura: Beleza Anunciada</option>
+                                <option value="editorial">Textura: Editorial</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Coluna da Direita: Explicação Técnica & Código GLSL -->
+                <div class="webgl-code-col">
+                    <div class="webgl-tabs">
+                        <button type="button" class="tab-btn active" data-tab="tab-explanation">Explicação Técnica</button>
+                        <button type="button" class="tab-btn" data-tab="tab-vertex">Vertex Shader (GLSL)</button>
+                        <button type="button" class="tab-btn" data-tab="tab-fragment">Fragment Shader (GLSL)</button>
+                    </div>
+
+                    <div class="tab-content active" id="tab-explanation">
+                        <h4>Como a GPU calcula a curvatura da página em tempo real:</h4>
+                        <ol class="tech-steps">
+                            <li><strong>Malha Geométrica (Mesh Grid):</strong> O canvas WebGL subdivide o plano da página em uma malha de $60 \times 60$ vértices conectados por triângulos (VBOs em <code>Float32Array</code>).</li>
+                            <li><strong>Deformação por Cilindro (Vertex Shader):</strong> Cada vértice $(x, y)$ é testado contra a linha de dobra. Se estiver na zona de transição, suas coordenadas são projetadas na equação paramétrica de um cilindro em 3D:
+                                <code>x' = R \cdot \sin(d / R)</code> e <code>z' = R \cdot (1 - \cos(d / R))</code>.
+                            </li>
+                            <li><strong>Rasterização & Shading (Fragment Shader):</strong> A GPU calcula a iluminação de Phong (ambiente + difusa + reflexo especular na superfície brilhante do papel) e projeta uma sombra suave no ponto de contato.</li>
+                            <li><strong>Performance:</strong> Como essa matemática roda em paralelo em centenas de núcleos da placa de vídeo (GPU), a animação é suave a 60 FPS sem travar o processamento da CPU.</li>
+                        </ol>
+                    </div>
+
+                    <div class="tab-content" id="tab-vertex">
+                        <pre><code class="glsl-code" id="code-vertex"></code></pre>
+                    </div>
+
+                    <div class="tab-content" id="tab-fragment">
+                        <pre><code class="glsl-code" id="code-fragment"></code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts: Módulo WebGL Shader e Lógica Interativa da Revista 3D -->
+    <script src="scripts/webgl-curl.js"></script>
     <script src="scripts/script.js"></script>
 </body>
 
