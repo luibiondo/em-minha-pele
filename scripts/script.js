@@ -570,7 +570,7 @@
         if (state.viewMode !== 'spread' || state.isFlipping) return;
 
         // Se o clique foi em um botão interativo, link ou hotspot, não vira a página
-        if (e.target.closest('button, a, .hotspot, input, select, .box-grafico')) return;
+        if (e.target.closest('button, a, .hotspot, input, select, .box-grafico, .photo-carousel')) return;
 
         const slot = e.target.closest('.slot');
         if (!slot) return;
@@ -604,6 +604,12 @@
         }
         if (e.target.closest('input, select, textarea') || !modalMusica.hidden) {
             if (e.key === 'Escape') closeModal();
+            if (e.key === 'Tab' && !modalMusica.hidden) {
+                const first = modalMusica.querySelector('[data-close]');
+                const last = modalMusica.querySelector('#link-musica');
+                if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+                else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+            }
             return;
         }
         if (e.key === 'Escape') closeModal();
@@ -738,6 +744,10 @@
     function toggleGrafico() {
         if (!boxGrafico) return;
         const isOpen = boxGrafico.classList.toggle('is-open');
+        boxGrafico.setAttribute('aria-hidden', String(!isOpen));
+        boxGrafico.setAttribute('tabindex', isOpen ? '0' : '-1');
+        if (isOpen) boxGrafico.focus();
+        else if (toggleGraficoBtn) toggleGraficoBtn.focus();
         if (toggleGraficoBtn) {
             toggleGraficoBtn.setAttribute('aria-expanded', String(isOpen));
         }
@@ -748,12 +758,12 @@
 
     const modalMusica = document.getElementById('modal-musica');
     const openMusicaBtn = document.querySelector('[data-open="modal-musica"]');
-    const songUrl = 'https://www.youtube.com/watch?v=wX-y0Yh3g1g';
+    const songUrl = 'https://www.youtube.com/watch?v=8AAWqjp_AVU';
     const qrImg = document.getElementById('qr-musica');
     const linkMusica = document.getElementById('link-musica');
 
     if (qrImg) {
-        qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${encodeURIComponent(songUrl)}&color=56-42-19&bgcolor=247-241-232`;
+        qrImg.src = 'assets/qr-musica.png';
     }
     if (linkMusica) {
         linkMusica.href = songUrl;
@@ -763,12 +773,14 @@
         if (!modalMusica) return;
         modalMusica.removeAttribute('hidden');
         requestAnimationFrame(() => modalMusica.classList.add('is-open'));
+        modalMusica.querySelector('[data-close]').focus();
     }
 
     function closeModal() {
         if (!modalMusica) return;
         modalMusica.classList.remove('is-open');
         setTimeout(() => modalMusica.setAttribute('hidden', ''), 250);
+        if (openMusicaBtn) openMusicaBtn.focus();
     }
 
     if (openMusicaBtn) openMusicaBtn.addEventListener('click', openModal);
@@ -783,7 +795,180 @@
         });
     }
 
+    /* V1 interactions: enrich the reader while preserving the original HTML file. */
+    const memoryPhoto = document.querySelector('#p-memoria > img');
+    memoryPhoto.src = 'assets/memoria-historia.png';
+    memoryPhoto.alt = 'Fotografias históricas de cuidado e penteado dos cabelos negros';
+    memoryPhoto.style.cssText = 'left:0;top:110px;width:242px;height:185px';
+
+    function createCarousel(target, files, label, geometry) {
+        const carousel = document.createElement('div');
+        carousel.className = 'photo-carousel';
+        carousel.style.cssText = geometry || target.style.cssText;
+        carousel.setAttribute('role', 'region');
+        carousel.setAttribute('aria-roledescription', 'carrossel');
+        carousel.setAttribute('aria-label', label);
+        const photo = document.createElement('img');
+        photo.className = 'photo-carousel__image';
+        photo.width = 306;
+        photo.height = 219;
+        photo.decoding = 'async';
+        const controls = document.createElement('div');
+        controls.className = 'photo-carousel__controls';
+        const previous = document.createElement('button');
+        previous.type = 'button';
+        previous.innerHTML = icon('left');
+        previous.setAttribute('aria-label', 'Foto anterior — ' + label);
+        const count = document.createElement('span');
+        count.className = 'photo-carousel__count';
+        const next = document.createElement('button');
+        next.type = 'button';
+        next.innerHTML = icon('right');
+        next.setAttribute('aria-label', 'Próxima foto — ' + label);
+        const pause = document.createElement('button');
+        pause.type = 'button';
+        const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+        let paused = reducedMotion.matches;
+        let current = 0;
+        let timer;
+        let visible = false;
+        let hovering = false;
+        let focused = false;
+        function show(index) {
+            current = (index + files.length) % files.length;
+            photo.src = 'assets/' + files[current] + '.png';
+            photo.alt = label + ' — fotografia ' + (current + 1) + ' de ' + files.length;
+            count.textContent = (current + 1) + ' / ' + files.length;
+            carousel.dataset.slide = String(current + 1);
+        }
+        function schedule() {
+            clearInterval(timer);
+            pause.textContent = paused ? '▶' : 'Ⅱ';
+            pause.setAttribute('aria-label', (paused ? 'Iniciar' : 'Pausar') + ' apresentação — ' + label);
+            pause.setAttribute('aria-pressed', String(paused));
+            count.setAttribute('aria-live', paused ? 'polite' : 'off');
+            if (!paused && visible && !hovering && !focused && !document.hidden) {
+                timer = setInterval(() => show(current + 1), 5000);
+            }
+        }
+        previous.addEventListener('click', () => { show(current - 1); schedule(); });
+        next.addEventListener('click', () => { show(current + 1); schedule(); });
+        pause.addEventListener('click', () => { paused = !paused; schedule(); });
+        carousel.addEventListener('pointerenter', () => { hovering = true; schedule(); });
+        carousel.addEventListener('pointerleave', () => { hovering = false; schedule(); });
+        carousel.addEventListener('focusin', () => { focused = true; schedule(); });
+        carousel.addEventListener('focusout', e => {
+            focused = carousel.contains(e.relatedTarget);
+            schedule();
+        });
+        carousel.addEventListener('keydown', e => {
+            if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+            e.preventDefault();
+            e.stopPropagation();
+            show(current + (e.key === 'ArrowRight' ? 1 : -1));
+            schedule();
+        });
+        document.addEventListener('visibilitychange', schedule);
+        reducedMotion.addEventListener('change', e => { paused = e.matches; schedule(); });
+        controls.append(previous, count, next, pause);
+        carousel.append(photo, controls);
+        target.replaceWith(carousel);
+        show(0);
+        new IntersectionObserver(entries => {
+            visible = entries[0].isIntersecting;
+            schedule();
+        }, { root: stage, threshold: 0.2 }).observe(carousel);
+        schedule();
+    }
+
+    createCarousel(document.querySelector('#p-marcha > img'),
+        ['marcha-14', 'marcha-15', 'marcha-16', 'marcha-17', 'marcha-18'], 'Marcha do Orgulho Crespo',
+        'left:323px;top:138px;width:303px;height:227px');
+    createCarousel(document.querySelector('#p-existimos > img'),
+        ['tombamento-10', 'transicao-20', 'tombamento-21', 'tombamento-22', 'tombamento-23', 'tombamento-24', 'tombamento-26'],
+        'Geração Tombamento', 'left:314px;top:197px;width:306px;height:219px');
+    createCarousel(document.querySelector('#p-existimos > .bg:last-of-type'),
+        ['transicao-19', 'transicao-20', 'transicao-rectangle10'], 'Transição capilar',
+        'left:-7px;top:653px;width:305px;height:189px');
+
+    openMusicaBtn.innerHTML = '<span class="interaction-label">' + icon('sound') + 'Ouvir Chico César ↗</span>';
+    toggleGraficoBtn.innerHTML = '<span>Ver gráfico · GEMAA/UERJ ↗</span>';
+    toggleGraficoBtn.classList.add('interaction-action');
+    toggleGraficoBtn.style.cssText = 'left:332px;top:110px;width:245px;height:27px';
+    boxGrafico.setAttribute('role', 'button');
+    boxGrafico.setAttribute('tabindex', '-1');
+    boxGrafico.setAttribute('aria-hidden', 'true');
+    boxGrafico.setAttribute('aria-label', 'Fechar gráfico GEMAA/UERJ');
+    boxGrafico.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ' || e.key === 'Escape') { e.preventDefault(); toggleGrafico(); }
+    });
+
+    const makeupPhoto = document.querySelector('#p-tons > img');
+    const makeupChart = document.createElement('div');
+    makeupChart.className = 'makeup-chart';
+    makeupChart.innerHTML = '<svg viewBox="0 0 314 375" role="img" aria-label="Percepção de 60 estudantes em Ocara: 53,3% tiveram dificuldade para achar base e 83,3% consideraram o mercado inacessível">' +
+        '<text x="157" y="45" text-anchor="middle" class="chart-heading">Percepção dos 60 estudantes</text><text x="157" y="65" text-anchor="middle">em Ocara</text>' +
+        [0, 20, 40, 60, 80, 100].map(n => '<path d="M25 ' + (304 - n * 2) + 'H314"/><text x="2" y="' + (308 - n * 2) + '" class="chart-axis">' + n + '%</text>').join('') +
+        '<rect class="chart-bar" x="55" y="195" width="58" height="109"/><rect class="chart-bar" x="202" y="131" width="58" height="173"/>' +
+        '<text x="55" y="343" class="chart-value">53,3%</text><text x="202" y="343" class="chart-value">83,3%</text>' +
+        '<text x="25" y="365" class="chart-axis">Dificuldade para achar base</text><text x="180" y="365" class="chart-axis">Mercado inacessível</text></svg>' +
+        '<button type="button" class="chart-replay">↻ Repetir animação</button>';
+    makeupPhoto.replaceWith(makeupChart);
+    function animateMakeupChart() {
+        makeupChart.classList.remove('is-visible');
+        requestAnimationFrame(() => requestAnimationFrame(() => makeupChart.classList.add('is-visible')));
+    }
+    makeupChart.querySelector('button').addEventListener('click', animateMakeupChart);
+    new IntersectionObserver(entries => {
+        if (entries[0].isIntersecting) animateMakeupChart();
+        else makeupChart.classList.remove('is-visible');
+    }, { root: stage, threshold: 0.3 }).observe(makeupChart);
+
+    const womenPage = document.getElementById('p-peso');
+    const researchToggle = document.createElement('button');
+    researchToggle.type = 'button';
+    researchToggle.className = 'hotspot interaction-action';
+    researchToggle.style.cssText = 'left:320px;top:385px;width:252px;height:27px';
+    researchToggle.textContent = 'Ver dados da pesquisa ↗';
+    researchToggle.setAttribute('aria-expanded', 'false');
+    researchToggle.setAttribute('aria-controls', 'women-research');
+    const research = document.createElement('div');
+    research.id = 'women-research';
+    research.className = 'women-research';
+    research.hidden = true;
+    research.innerHTML = '<h3>Cabelos sem Limites, Como Nós</h3><p>1.001 mulheres pretas ou pardas, de cabelos crespos ou cacheados.</p>' +
+        '<div><strong>70%</strong><span>percebem pressão para alisar</span><i style="--bar:70%"></i></div>' +
+        '<div><strong>80%</strong><span>consideram o cabelo expressão</span><i style="--bar:80%"></i></div>' +
+        '<small>Instituto Sumaúma e RPretas · 2024</small>';
+    researchToggle.addEventListener('click', () => {
+        research.hidden = !research.hidden;
+        researchToggle.setAttribute('aria-expanded', String(!research.hidden));
+        researchToggle.textContent = research.hidden ? 'Ver dados da pesquisa ↗' : 'Fechar dados da pesquisa ×';
+    });
+    womenPage.append(research, researchToggle);
+    document.querySelectorAll('#p-politica p').forEach(paragraph => {
+        paragraph.innerHTML = paragraph.innerHTML
+            .replace('Lei 10.639/2003', '<a class="editorial-link" target="_blank" rel="noopener" href="https://www.planalto.gov.br/ccivil_03/leis/2003/l10.639.htm">Lei 10.639/2003 ↗</a>')
+            .replace('Lei 11.645/2008', '<a class="editorial-link" target="_blank" rel="noopener" href="https://www.planalto.gov.br/ccivil_03/_ato2007-2010/2008/lei/l11645.htm">Lei 11.645/2008 ↗</a>');
+    });
+
+    const cover = document.getElementById('p-contracapa');
+    cover.classList.add('page--closing');
+    cover.innerHTML = '<p class="closing-edition">EDIÇÃO 1 - OUTUBRO 2026</p>' +
+        '<h2 class="closing-title">EM<br>MINHA</h2><div class="closing-band"></div>' +
+        '<p class="closing-skin">PELE</p><p class="closing-subtitle">O preço de não caber no padrão</p>' +
+        '<blockquote class="closing-quote">“Reconhecer nossos traços é também recuperar o direito de existir com dignidade, beleza e autonomia”</blockquote>' +
+        '<a class="closing-references" href="referencias.html">Acesse as nossas referências <span aria-hidden="true">→</span></a>';
+
+    slots.forEach((slot, index) => {
+        const number = slot.querySelector('.pn');
+        if (number && index >= 4) number.textContent = String(index - 1);
+    });
+
+    const initialPageId = location.hash.slice(1);
     // A single page fits small screens; desktop opens the original spread view.
     setViewMode(window.innerWidth < 760 ? 'single' : 'spread');
+    const initialPage = slots.findIndex(slot => slot.querySelector('.page').id === initialPageId);
+    if (initialPage > 0) goToPage(initialPage);
 
 })();
