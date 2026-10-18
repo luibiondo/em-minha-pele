@@ -1477,7 +1477,7 @@ body { height: 100dvh; overflow: hidden; }
 #p-editorial > p:first-of-type > span:first-child { padding-left: 50px !important; }
 #p-editorial > p:first-of-type > span:nth-child(2) { padding-left: 50px !important; }
 #p-editorial > h2.vertical {
-  writing-mode: horizontal-tb; left: 39px !important; top: 642.5px !important;
+  writing-mode: horizontal-tb; left: 45px !important; top: 642.5px !important;
   width: max-content !important; height: 90px !important;
   transform: translate(-50%, -50%) rotate(-90deg); transform-origin: center;
   font-size: 64.399px !important; line-height: 90px !important; letter-spacing: 2.576px;
