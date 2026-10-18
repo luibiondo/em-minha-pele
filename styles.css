@@ -1475,7 +1475,7 @@ body { height: 100dvh; overflow: hidden; }
 .prose-paragraph { display: block; }
 .prose-paragraph + .prose-paragraph { margin-top: 14px; }
 #p-editorial > p:first-of-type > span:first-child { padding-left: 50px !important; }
-#p-editorial > p:first-of-type > span:nth-child(2) { padding-left: 26px !important; }
+#p-editorial > p:first-of-type > span:nth-child(2) { padding-left: 50px !important; }
 #p-editorial > h2.vertical {
   writing-mode: horizontal-tb; left: 39px !important; top: 642.5px !important;
   width: max-content !important; height: 90px !important;

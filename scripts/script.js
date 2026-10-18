@@ -2,7 +2,7 @@
  * EM MINHA PELE — Revista Digital (Modo Editorial 3D & Spread)
  * 1. Visualizador fiel ao Figma (frame "V1") com páginas duplas (spreads), vinco de lombada e sombra de relevo
  * 2. Animação 3D de virar página por hardware acceleration (CSS 3D / rotateY) com iluminação dinâmica
- * 3. Síntese de som suave de papel folheando (Web Audio API)
+ * 3. Leitura narrada com acompanhamento visual do texto
  * 4. Interações originais: Gráfico GEMAA/UERJ, Modal Chico César com QR Code, e links do Índice
  */
 
@@ -52,7 +52,7 @@
     };
     let pendingPage = null;
 
-    // The reader surrounds the original magazine; editorial pages stay untouched.
+    // The reader preserves index.html and applies interaction and layout corrections here.
     const icons = {
         menu: '<path d="M4 6h16M4 12h16M4 18h16"/>',
         close: '<path d="m6 6 12 12M18 6 6 18"/>',
@@ -1017,6 +1017,7 @@
                     if (node.tagName === 'BR') raw += '\n';
                     else {
                         if (node.classList.contains('prose-paragraph') && raw) raw += '\n';
+                        if (node.classList.contains('idx-t') && raw) raw += ' ';
                         node.childNodes.forEach(collect);
                     }
                 }
