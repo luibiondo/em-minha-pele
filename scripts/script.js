@@ -991,8 +991,15 @@
         const number = slot.querySelector('.pn');
         if (number && index >= 4) number.textContent = String(index - 1);
     });
+    const indexedPages = new Map();
     indexGrid.querySelectorAll('.idx-item').forEach(item => {
         const page = document.querySelector(item.getAttribute('href'));
+        if (indexedPages.has(page.id)) {
+            indexedPages.get(page.id).querySelector('.idx-t').textContent = page.getAttribute('aria-label');
+            item.remove();
+            return;
+        }
+        indexedPages.set(page.id, item);
         const number = page.querySelector('.pn');
         item.querySelector('.idx-n').textContent = number.textContent.padStart(2, '0');
     });
