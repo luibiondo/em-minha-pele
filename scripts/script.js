@@ -996,6 +996,9 @@
         const number = page.querySelector('.pn');
         item.querySelector('.idx-n').textContent = number.textContent.padStart(2, '0');
     });
+    Array.from(indexGrid.children)
+        .sort((a, b) => Number(a.querySelector('.idx-n').textContent) - Number(b.querySelector('.idx-n').textContent))
+        .forEach(item => indexGrid.appendChild(item));
 
     const makeupParagraphs = document.querySelectorAll('#p-tons > div.a > p');
     makeupParagraphs[1].textContent = 'Em Ocara, um estudo local com 60 estudantes registrou que 53,3% tiveram dificuldade para encontrar base e 83,3% consideraram o mercado inacessível. Os estudos mostram como a oferta pode falhar para quem está diante da prateleira.';
