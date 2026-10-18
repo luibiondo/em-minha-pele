@@ -48,9 +48,126 @@
         viewMode: 'spread',     // 'spread' (Modo Revista) | 'continuous' | 'single'
         currentSpreadIndex: 0,
         currentPage: 0,
-        soundEnabled: true,
+        soundEnabled: false,
         isFlipping: false
     };
+    let pendingPage = null;
+
+    // The reader surrounds the original magazine; editorial pages stay untouched.
+    const icons = {
+        menu: '<path d="M4 6h16M4 12h16M4 18h16"/>',
+        close: '<path d="m6 6 12 12M18 6 6 18"/>',
+        expand: '<path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5"/>',
+        spread: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M12 5v14"/>',
+        single: '<rect x="6" y="3" width="12" height="18" rx="2"/>',
+        continuous: '<path d="M6 3h12v7H6zM6 14h12v7H6z"/>',
+        minus: '<path d="M5 12h14"/>',
+        plus: '<path d="M5 12h14M12 5v14"/>',
+        left: '<path d="m14 6-6 6 6 6"/>',
+        right: '<path d="m10 6 6 6-6 6"/>',
+        sound: '<path d="m11 4-6 5H2v6h3l6 5V4Z"/><path d="M16 8a6 6 0 0 1 0 8m3-11a10 10 0 0 1 0 14"/>',
+        mute: '<path d="m11 4-6 5H2v6h3l6 5V4Z"/><path d="m16 9 6 6m0-6-6 6"/>'
+    };
+    const icon = name => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${icons[name]}</svg>`;
+    const readerButton = (id, name, label, extra = '') => `<button type="button" id="${id}" class="reader-button" title="${label}" aria-label="${label}" ${extra}>${icon(name)}</button>`;
+    const readerHeader = document.createElement('header');
+    readerHeader.className = 'reader-header';
+    readerHeader.innerHTML = `
+        <a class="reader-brand" href="#p-capa" aria-label="Em Minha Pele — voltar à capa"><span>EM MINHA<br><b>PELE</b><i aria-hidden="true">.</i></span></a>
+        <div class="reader-edition"><span>REVISTA DIGITAL</span><span>Edição 01 <i aria-hidden="true">/</i> Outubro 2026</span></div>
+        <div class="reader-header-actions"><button type="button" id="reader-index-button" class="reader-index-button" aria-expanded="false" aria-controls="reader-index">${icon('menu')}<span>Sumário</span></button>${readerButton('btn-fullscreen', 'expand', 'Entrar em tela cheia')}</div>`;
+    document.body.prepend(readerHeader);
+
+    const stage = document.createElement('div');
+    stage.className = 'reader-stage';
+    stage.setAttribute('aria-label', 'Área de leitura');
+    revista.before(stage);
+    stage.appendChild(revista);
+
+    const rail = document.createElement('div');
+    rail.className = 'reader-rail';
+    rail.setAttribute('aria-hidden', 'true');
+    rail.innerHTML = '<span>BELEZA QUE RESISTE</span><span>IDENTIDADE QUE PERMANECE</span>';
+    document.body.appendChild(rail);
+
+    const footer = document.createElement('footer');
+    footer.className = 'reader-footer';
+    footer.innerHTML = `
+        <div class="reader-location"><span class="reader-eyebrow">NESTA PÁGINA</span><span id="reader-section">Capa</span></div>
+        <nav class="reader-controls" aria-label="Controles de leitura">
+            <div class="reader-control-group reader-view" role="group" aria-label="Modo de leitura">
+                ${readerButton('reader-spread', 'spread', 'Páginas duplas', 'data-view-mode="spread"')}
+                ${readerButton('reader-single', 'single', 'Página única', 'data-view-mode="single"')}
+                ${readerButton('reader-continuous', 'continuous', 'Leitura contínua', 'data-view-mode="continuous"')}
+            </div>
+            <div class="reader-control-group reader-zoom" role="group" aria-label="Zoom">
+                ${readerButton('btn-zoom-out', 'minus', 'Diminuir zoom')}
+                <button type="button" id="btn-zoom-fit" class="reader-fit" title="Ajustar à tela" aria-label="Ajustar à tela"><span id="zoom-val">100%</span></button>
+                ${readerButton('btn-zoom-in', 'plus', 'Aumentar zoom')}
+            </div>
+            <div class="reader-control-group reader-paging"><span id="reader-prev-slot"></span><output id="cur-page-num" aria-live="polite" aria-atomic="true"></output><span id="reader-next-slot"></span></div>
+            ${readerButton('btn-sound-toggle', 'mute', 'Ativar som de folhear', 'aria-pressed="false"')}
+        </nav>
+        <div class="reader-progress"><span>01</span><input id="reader-page-range" type="range" min="1" max="${totalPages}" value="1" aria-label="Ir para uma página"><span>${String(totalPages).padStart(2, '0')}</span></div>`;
+    document.body.appendChild(footer);
+    ['prev', 'next'].forEach(direction => {
+        const button = document.getElementById(`btn-${direction}`);
+        button.className = 'reader-button';
+        button.innerHTML = icon(direction === 'prev' ? 'left' : 'right');
+        button.title = direction === 'prev' ? 'Página anterior' : 'Próxima página';
+        document.getElementById(`reader-${direction}-slot`).appendChild(button);
+    });
+
+    const backdrop = document.createElement('button');
+    backdrop.className = 'reader-index-backdrop';
+    backdrop.setAttribute('aria-label', 'Fechar sumário');
+    backdrop.hidden = true;
+    const drawer = document.createElement('aside');
+    drawer.id = 'reader-index';
+    drawer.className = 'reader-index';
+    drawer.hidden = true;
+    drawer.setAttribute('role', 'dialog');
+    drawer.setAttribute('aria-modal', 'true');
+    drawer.setAttribute('aria-label', 'Sumário da edição');
+    drawer.innerHTML = `<div class="reader-index-heading"><div><span class="reader-eyebrow">EDIÇÃO 01 · ${totalPages} PÁGINAS</span><h2>Dentro desta edição</h2></div>${readerButton('reader-index-close', 'close', 'Fechar sumário')}</div><nav class="reader-index-list" aria-label="Páginas da revista"></nav><p class="reader-index-note">Escolha uma página para continuar a leitura.</p>`;
+    const indexList = drawer.querySelector('nav');
+    slots.forEach((slot, i) => {
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'reader-index-item';
+        const number = document.createElement('span');
+        number.textContent = String(i + 1).padStart(2, '0');
+        const title = document.createElement('span');
+        title.textContent = slot.querySelector('.page').getAttribute('aria-label');
+        button.append(number, title);
+        button.addEventListener('click', () => {
+            setIndexOpen(false);
+            goToPage(i);
+        });
+        indexList.appendChild(button);
+    });
+    document.body.append(backdrop, drawer);
+    function setIndexOpen(open) {
+        drawer.hidden = !open;
+        backdrop.hidden = !open;
+        document.getElementById('reader-index-button').setAttribute('aria-expanded', String(open));
+        if (open) {
+            const current = drawer.querySelector('[aria-current="page"]');
+            (current || document.getElementById('reader-index-close')).focus();
+            if (current) current.scrollIntoView({ block: 'nearest' });
+        } else {
+            document.getElementById('reader-index-button').focus();
+        }
+    }
+    document.getElementById('reader-index-button').addEventListener('click', () => setIndexOpen(drawer.hidden));
+    document.getElementById('reader-index-close').addEventListener('click', () => setIndexOpen(false));
+    backdrop.addEventListener('click', () => setIndexOpen(false));
+    document.getElementById('reader-page-range').addEventListener('change', e => goToPage(Number(e.target.value) - 1));
+    document.addEventListener('fullscreenchange', () => {
+        const button = document.getElementById('btn-fullscreen');
+        button.setAttribute('aria-label', document.fullscreenElement ? 'Sair da tela cheia' : 'Entrar em tela cheia');
+        button.title = button.getAttribute('aria-label');
+    });
 
     /* -------------------------------------------------------------
      * 1. SÍNTESE DO SOM DE FOLHEAR PAPEL (WEB AUDIO API)
@@ -87,6 +204,7 @@
             noise.connect(filter);
             filter.connect(gain);
             gain.connect(ctx.destination);
+            noise.onended = () => ctx.close();
             noise.start();
         } catch (e) {}
     }
@@ -95,23 +213,23 @@
      * 2. CÁLCULO DE ESCALA RESPONSIVA
      * ----------------------------------------------------------- */
     function calcAutoScale() {
-        const availableW = window.innerWidth;
-        const availableH = window.innerHeight;
+        const availableW = stage.clientWidth;
+        const availableH = stage.clientHeight;
 
         if (state.viewMode === 'spread') {
             const targetW = PAGE_W * 2;
             const targetH = PAGE_H;
-            const sW = (availableW - 160) / targetW; // espaço para as setas laterais
-            const sH = (availableH - 48) / targetH;
-            return Math.min(1.05, Math.max(0.3, Math.min(sW, sH)));
+            const sW = (availableW - 64) / targetW;
+            const sH = (availableH - 32) / targetH;
+            return Math.min(1.05, Math.max(0.1, Math.min(sW, sH)));
         } else if (state.viewMode === 'single') {
-            const sW = (availableW - 48) / PAGE_W;
-            const sH = (availableH - 120) / PAGE_H;
-            return Math.min(1.2, Math.max(0.35, Math.min(sW, sH)));
+            const sW = (availableW - 32) / PAGE_W;
+            const sH = (availableH - 32) / PAGE_H;
+            return Math.min(1.2, Math.max(0.1, Math.min(sW, sH)));
         } else {
             // Continuous
             if (availableW < 640) {
-                return Math.max(0.45, (availableW - 24) / PAGE_W);
+                return Math.max(0.1, (availableW - 32) / PAGE_W);
             } else if (availableW < 1240) {
                 return Math.min(1, Math.max(0.7, (availableW - 64) / PAGE_W));
             }
@@ -212,6 +330,14 @@
         if (targetSpreadIdx < 0 || targetSpreadIdx >= spreads.length) return;
         if (targetSpreadIdx === state.currentSpreadIndex) return;
 
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            state.currentSpreadIndex = targetSpreadIdx;
+            const spread = spreads[targetSpreadIdx];
+            state.currentPage = spread.left !== null ? spread.left : spread.right;
+            updateSpreadDisplay();
+            return;
+        }
+
         // No modo contínuo ou simples, pula a animação 3D
         if (state.viewMode !== 'spread') {
             state.currentSpreadIndex = targetSpreadIdx;
@@ -308,6 +434,11 @@
             updateSpreadDisplay(state.currentSpreadIndex);
             flipperLayer.remove();
             state.isFlipping = false;
+            if (pendingPage !== null) {
+                const nextPage = pendingPage;
+                pendingPage = null;
+                goToPage(nextPage);
+            }
         }, 580);
     }
 
@@ -315,15 +446,20 @@
      * 5. MODOS DE VISUALIZAÇÃO
      * ----------------------------------------------------------- */
     function setViewMode(mode) {
+        if (state.isFlipping) return;
         state.viewMode = mode;
         revista.classList.remove('revista--continuous', 'revista--single', 'revista--spread');
         revista.classList.add(`revista--${mode}`);
 
         document.querySelectorAll('[data-view-mode]').forEach(btn => {
             btn.classList.toggle('active', btn.dataset.viewMode === mode);
+            btn.setAttribute('aria-pressed', String(btn.dataset.viewMode === mode));
         });
 
         if (mode === 'spread') {
+            state.currentSpreadIndex = spreads.findIndex(s => s.left === state.currentPage || s.right === state.currentPage);
+            const spread = spreads[state.currentSpreadIndex];
+            state.currentPage = spread.left !== null ? spread.left : spread.right;
             updateSpreadDisplay();
         } else {
             if (placeholderSlot.parentElement) placeholderSlot.remove();
@@ -333,9 +469,12 @@
 
         applyScale();
         updatePageCounter();
+        if (mode === 'continuous') slots[state.currentPage].scrollIntoView({ block: 'start' });
+        else stage.scrollTop = 0;
     }
 
     function goToPage(pageIdx) {
+        if (state.isFlipping) { pendingPage = pageIdx; return; }
         state.currentPage = Math.max(0, Math.min(totalPages - 1, pageIdx));
 
         if (state.viewMode === 'spread') {
@@ -385,15 +524,27 @@
         } else {
             curLabel.textContent = `${state.currentPage + 1} / ${totalPages}`;
         }
+        const page = slots[state.currentPage].querySelector('.page');
+        document.getElementById('reader-section').textContent = page.getAttribute('aria-label');
+        const range = document.getElementById('reader-page-range');
+        range.value = String(state.currentPage + 1);
+        range.setAttribute('aria-valuetext', `Página ${state.currentPage + 1} de ${totalPages}: ${page.getAttribute('aria-label')}`);
+        range.style.setProperty('--reader-progress', `${state.currentPage / (totalPages - 1) * 100}%`);
+        drawer.querySelectorAll('.reader-index-item').forEach((button, i) => {
+            if (i === state.currentPage) button.setAttribute('aria-current', 'page');
+            else button.removeAttribute('aria-current');
+        });
+        setClosedState(state.currentSpreadIndex);
     }
 
     // Monitora scroll no modo contínuo
     let scrollTimeout;
-    window.addEventListener('scroll', () => {
+    stage.addEventListener('scroll', () => {
         if (state.viewMode !== 'continuous') return;
         clearTimeout(scrollTimeout);
         scrollTimeout = setTimeout(() => {
-            const middleY = window.innerHeight / 2;
+            const stageRect = stage.getBoundingClientRect();
+            const middleY = stageRect.top + stageRect.height / 2;
             let closestIdx = 0;
             let minDiff = Infinity;
             slots.forEach((s, i) => {
@@ -434,9 +585,25 @@
      * 7. TECLADO & NAVEGAÇÃO
      * ----------------------------------------------------------- */
     window.addEventListener('keydown', e => {
+        if (!drawer.hidden) {
+            if (e.key === 'Escape') { setIndexOpen(false); return; }
+            if (e.key === 'Tab') {
+                const buttons = Array.from(drawer.querySelectorAll('button'));
+                const first = buttons[0];
+                const last = buttons[buttons.length - 1];
+                if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+                else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+            }
+            return;
+        }
+        if (e.target.closest('input, select, textarea') || !modalMusica.hidden) {
+            if (e.key === 'Escape') closeModal();
+            return;
+        }
         if (e.key === 'Escape') closeModal();
 
         if (e.key === 'ArrowRight' || e.key === 'PageDown') {
+            e.preventDefault();
             if (state.viewMode === 'spread') {
                 flipToSpread(state.currentSpreadIndex + 1, 'next');
             } else {
@@ -444,6 +611,7 @@
             }
         }
         if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+            e.preventDefault();
             if (state.viewMode === 'spread') {
                 flipToSpread(state.currentSpreadIndex - 1, 'prev');
             } else {
@@ -534,8 +702,10 @@
     if (btnSoundToggle) {
         btnSoundToggle.addEventListener('click', () => {
             state.soundEnabled = !state.soundEnabled;
-            btnSoundToggle.textContent = state.soundEnabled ? '🔊' : '🔇';
-            btnSoundToggle.title = state.soundEnabled ? 'Som de folhear: Ligado' : 'Som de folhear: Mudo';
+            btnSoundToggle.innerHTML = icon(state.soundEnabled ? 'sound' : 'mute');
+            btnSoundToggle.setAttribute('aria-pressed', String(state.soundEnabled));
+            btnSoundToggle.title = state.soundEnabled ? 'Desativar som de folhear' : 'Ativar som de folhear';
+            btnSoundToggle.setAttribute('aria-label', btnSoundToggle.title);
         });
     }
 
@@ -607,7 +777,7 @@
         });
     }
 
-    // Inicialização direta no modo Revista 3D (Spread)
-    setViewMode('spread');
+    // A single page fits small screens; desktop opens the original spread view.
+    setViewMode(window.innerWidth < 760 ? 'single' : 'spread');
 
 })();
