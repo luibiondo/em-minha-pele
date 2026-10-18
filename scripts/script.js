@@ -772,8 +772,10 @@
     function openModal() {
         if (!modalMusica) return;
         modalMusica.removeAttribute('hidden');
-        requestAnimationFrame(() => modalMusica.classList.add('is-open'));
-        modalMusica.querySelector('[data-close]').focus();
+        requestAnimationFrame(() => {
+            modalMusica.classList.add('is-open');
+            modalMusica.querySelector('[data-close]').focus();
+        });
     }
 
     function closeModal() {
@@ -849,6 +851,9 @@
             photo.alt = label + ' — fotografia ' + (current + 1) + ' de ' + files.length;
             count.textContent = (current + 1) + ' / ' + files.length;
             carousel.dataset.slide = String(current + 1);
+            // Load the next photograph during the five-second viewing interval.
+            const upcoming = document.createElement('img');
+            upcoming.src = 'assets/' + files[(current + 1) % files.length] + '.png';
         }
         function schedule() {
             clearInterval(timer);
