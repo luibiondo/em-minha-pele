@@ -61,6 +61,7 @@
         spread: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M12 5v14"/>',
         single: '<rect x="6" y="3" width="12" height="18" rx="2"/>',
         continuous: '<path d="M6 3h12v7H6zM6 14h12v7H6z"/>',
+        options: '<path d="M4 7h16M4 17h16"/><circle cx="9" cy="7" r="3" fill="currentColor"/><circle cx="15" cy="17" r="3" fill="currentColor"/>',
         minus: '<path d="M5 12h14"/>',
         plus: '<path d="M5 12h14M12 5v14"/>',
         left: '<path d="m14 6-6 6 6 6"/>',
@@ -70,31 +71,23 @@
     };
     const icon = name => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${icons[name]}</svg>`;
     const readerButton = (id, name, label, extra = '') => `<button type="button" id="${id}" class="reader-button" title="${label}" aria-label="${label}" ${extra}>${icon(name)}</button>`;
-    const readerHeader = document.createElement('header');
-    readerHeader.className = 'reader-header';
-    readerHeader.innerHTML = `
-        <a class="reader-brand" href="#p-capa" aria-label="Em Minha Pele — voltar à capa"><span>EM MINHA<br><b>PELE</b><i aria-hidden="true">.</i></span></a>
-        <div class="reader-edition"><span>REVISTA DIGITAL</span><span>Edição 01 <i aria-hidden="true">/</i> Outubro 2026</span></div>
-        <div class="reader-header-actions"><button type="button" id="reader-index-button" class="reader-index-button" aria-expanded="false" aria-controls="reader-index">${icon('menu')}<span>Sumário</span></button>${readerButton('btn-fullscreen', 'expand', 'Entrar em tela cheia')}</div>`;
-    document.body.prepend(readerHeader);
-
     const stage = document.createElement('div');
     stage.className = 'reader-stage';
     stage.setAttribute('aria-label', 'Área de leitura');
     revista.before(stage);
     stage.appendChild(revista);
 
-    const rail = document.createElement('div');
-    rail.className = 'reader-rail';
-    rail.setAttribute('aria-hidden', 'true');
-    rail.innerHTML = '<span>BELEZA QUE RESISTE</span><span>IDENTIDADE QUE PERMANECE</span>';
-    document.body.appendChild(rail);
-
     const footer = document.createElement('footer');
     footer.className = 'reader-footer';
     footer.innerHTML = `
-        <div class="reader-location"><span class="reader-eyebrow">NESTA PÁGINA</span><span id="reader-section">Capa</span></div>
-        <nav class="reader-controls" aria-label="Controles de leitura">
+        <div class="reader-meta">
+            <button type="button" id="reader-index-button" class="reader-button" title="Sumário" aria-label="Abrir sumário" aria-expanded="false" aria-controls="reader-index">${icon('menu')}</button>
+            <div class="reader-location"><a class="reader-brand" href="#p-capa" aria-label="Em Minha Pele — voltar à capa">Em minha pele</a><span id="reader-section">Capa</span></div>
+        </div>
+        <nav class="reader-control-group reader-paging" aria-label="Navegação de páginas"><span id="reader-prev-slot"></span><output id="cur-page-num" aria-live="polite" aria-atomic="true"></output><span id="reader-next-slot"></span></nav>
+        <details class="reader-tools" id="reader-tools" ${window.innerWidth >= 900 ? 'open' : ''}>
+            <summary class="reader-tools-toggle" aria-label="Opções de leitura">${icon('options')}<span>Opções</span></summary>
+            <div class="reader-options" role="group" aria-label="Opções de leitura">
             <div class="reader-control-group reader-view" role="group" aria-label="Modo de leitura">
                 ${readerButton('reader-spread', 'spread', 'Páginas duplas', 'data-view-mode="spread"')}
                 ${readerButton('reader-single', 'single', 'Página única', 'data-view-mode="single"')}
@@ -105,11 +98,17 @@
                 <button type="button" id="btn-zoom-fit" class="reader-fit" title="Ajustar à tela" aria-label="Ajustar à tela"><span id="zoom-val">100%</span></button>
                 ${readerButton('btn-zoom-in', 'plus', 'Aumentar zoom')}
             </div>
-            <div class="reader-control-group reader-paging"><span id="reader-prev-slot"></span><output id="cur-page-num" aria-live="polite" aria-atomic="true"></output><span id="reader-next-slot"></span></div>
             ${readerButton('btn-sound-toggle', 'mute', 'Ativar som de folhear', 'aria-pressed="false"')}
-        </nav>
+            ${readerButton('btn-fullscreen', 'expand', 'Entrar em tela cheia')}
+            </div>
+        </details>
         <div class="reader-progress"><span>01</span><input id="reader-page-range" type="range" min="1" max="${totalPages}" value="1" aria-label="Ir para uma página"><span>${String(totalPages).padStart(2, '0')}</span></div>`;
     document.body.appendChild(footer);
+    const readerTools = document.getElementById('reader-tools');
+    let toolsWide = window.innerWidth >= 900;
+    document.addEventListener('click', event => {
+        if (!toolsWide && !readerTools.contains(event.target)) readerTools.open = false;
+    });
     ['prev', 'next'].forEach(direction => {
         const button = document.getElementById(`btn-${direction}`);
         button.className = 'reader-button';
@@ -219,13 +218,13 @@
         if (state.viewMode === 'spread') {
             const targetW = PAGE_W * 2;
             const targetH = PAGE_H;
-            const sW = (availableW - 64) / targetW;
-            const sH = (availableH - 32) / targetH;
-            return Math.min(1.05, Math.max(0.1, Math.min(sW, sH)));
+            const sW = (availableW - 16) / targetW;
+            const sH = (availableH - 16) / targetH;
+            return Math.max(0.1, Math.min(sW, sH));
         } else if (state.viewMode === 'single') {
-            const sW = (availableW - 32) / PAGE_W;
-            const sH = (availableH - 32) / PAGE_H;
-            return Math.min(1.2, Math.max(0.1, Math.min(sW, sH)));
+            const sW = (availableW - 16) / PAGE_W;
+            const sH = (availableH - 16) / PAGE_H;
+            return Math.max(0.1, Math.min(sW, sH));
         } else {
             // Continuous
             if (availableW < 640) {
@@ -247,6 +246,8 @@
     }
 
     window.addEventListener('resize', () => {
+        const wide = window.innerWidth >= 900;
+        if (wide !== toolsWide) { readerTools.open = wide; toolsWide = wide; }
         if (state.zoomMode === 'auto') applyScale();
     });
 
@@ -585,6 +586,11 @@
      * 7. TECLADO & NAVEGAÇÃO
      * ----------------------------------------------------------- */
     window.addEventListener('keydown', e => {
+        if (e.key === 'Escape' && !toolsWide && readerTools.open) {
+            readerTools.open = false;
+            readerTools.querySelector('summary').focus();
+            return;
+        }
         if (!drawer.hidden) {
             if (e.key === 'Escape') { setIndexOpen(false); return; }
             if (e.key === 'Tab') {
