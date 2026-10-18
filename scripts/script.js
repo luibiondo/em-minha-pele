@@ -12,7 +12,7 @@
     const PAGE_W = 595;
     const PAGE_H = 842;
     const root = document.documentElement;
-    document.querySelector('link[rel="stylesheet"][href="styles.css"]').href = 'styles.css?v=20261018-reading-layout';
+    document.querySelector('link[rel="stylesheet"][href="styles.css"]').href = 'styles.css?v=20261018-reading-layout-2';
     const revista = document.querySelector('.revista');
     const slots = Array.from(document.querySelectorAll('.slot'));
     const totalPages = slots.length; // 20 páginas (incluindo Contracapa)
@@ -870,6 +870,7 @@
         'left:-7px;top:653px;width:305px;height:189px');
 
     openMusicaBtn.innerHTML = '<span class="interaction-label">' + icon('sound') + 'Ouvir Chico César ↗</span>';
+    openMusicaBtn.style.cssText = 'left:272px;top:418px;width:301px;height:24px;z-index:7';
     toggleGraficoBtn.innerHTML = '<span>Ver gráfico · GEMAA/UERJ ↗</span>';
     toggleGraficoBtn.classList.add('interaction-action');
     toggleGraficoBtn.style.cssText = 'left:332px;top:110px;width:245px;height:27px';
