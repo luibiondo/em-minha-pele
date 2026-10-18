@@ -12,7 +12,7 @@
     const PAGE_W = 595;
     const PAGE_H = 842;
     const root = document.documentElement;
-    document.querySelector('link[rel="stylesheet"][href="styles.css"]').href = 'styles.css?v=20261018-reading-layout-3';
+    document.querySelector('link[rel="stylesheet"][href="styles.css"]').href = 'styles.css?v=20261018-index-spacing';
     const revista = document.querySelector('.revista');
     const slots = Array.from(document.querySelectorAll('.slot'));
     const totalPages = slots.length; // 20 páginas (incluindo Contracapa)
@@ -749,6 +749,11 @@
     }
 
     /* V1 interactions: enrich the reader while preserving the original HTML file. */
+    const indexGrid = document.createElement('nav');
+    indexGrid.className = 'idx-grid';
+    indexGrid.setAttribute('aria-label', 'Artigos da revista');
+    document.querySelectorAll('#p-indice > .idx-item').forEach(item => indexGrid.appendChild(item));
+    document.getElementById('p-indice').appendChild(indexGrid);
     document.querySelector('#p-autores img[alt="Gustavo H L Munhoz"]').src = 'assets/autor-gustavo.png';
     document.querySelectorAll('#p-autores .autor-foto').forEach((photo, index) => {
         if (index === 1 || index === 4) photo.style.left = '279px';

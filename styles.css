@@ -1490,6 +1490,12 @@ body { height: 100dvh; overflow: hidden; }
 #p-autores > h2 { font-size: 24px !important; font-weight: 400 !important; line-height: normal !important; width: 207px !important; }
 #p-autores .autor-nome { font-size: 10.2px; line-height: normal; }
 #p-indice .idx-t { font: 700 16px/21px 'Playfair Display', serif; }
+#p-indice .idx-grid { position: absolute; left: 27px; top: 140px; width: 514px; height: 684px; display: grid; grid-template-rows: repeat(9, minmax(0, 1fr)); grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-flow: column; column-gap: 24px; }
+#p-indice .idx-item { display: grid; grid-template-columns: 39px minmax(0, 1fr); column-gap: 9px; align-items: baseline; align-content: start; min-width: 0; }
+#p-indice .idx-n, #p-indice .idx-t { position: static !important; width: auto !important; }
+#p-indice .idx-item:focus-visible { outline: 2px solid var(--marrom); outline-offset: 3px; }
+#p-masculina > .bg:not(:first-child) { top: 506px !important; height: 261px !important; }
+#p-masculina > p.w { top: 520px !important; }
 #p-direito > p, #p-antes > p { font-size: 13px !important; line-height: normal !important; }
 #p-belo > div.a p, #p-belo > p:not(.i) { font-size: 12px !important; line-height: 16px !important; }
 #p-belo > p.i, #p-peso > p.i:not(.pf) { font-size: 10.5px !important; line-height: 14px !important; font-weight: 300; }
