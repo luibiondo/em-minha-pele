@@ -796,6 +796,15 @@
     }
 
     /* V1 interactions: enrich the reader while preserving the original HTML file. */
+    const frontCover = document.getElementById('p-capa');
+    frontCover.querySelector('img').src = 'assets/capa-fundo.png';
+    const coverCutout = document.createElement('img');
+    coverCutout.className = 'img cover-cutout';
+    coverCutout.src = 'assets/capa-recorte.png';
+    coverCutout.alt = '';
+    coverCutout.setAttribute('aria-hidden', 'true');
+    coverCutout.style.cssText = 'left:-5px;top:-161px;width:602px;height:1015px';
+    frontCover.querySelector('h1').after(coverCutout);
     const memoryPhoto = document.querySelector('#p-memoria > img');
     memoryPhoto.src = 'assets/memoria-historia.png';
     memoryPhoto.alt = 'Fotografias históricas de cuidado e penteado dos cabelos negros';

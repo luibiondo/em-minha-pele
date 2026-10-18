@@ -1441,6 +1441,10 @@ body { height: 100dvh; overflow: hidden; }
 .closing-quote { left: 82px; top: 599px; width: 422px; font: 400 20px/27px 'Playfair Display', serif; }
 .closing-references { left: 136px; top: 778px; width: 324px; min-height: 44px; display: flex; align-items: center; justify-content: center; gap: 8px; color: white; font: 300 16px/20px Montserrat, sans-serif; letter-spacing: 1.6px; text-underline-offset: 4px; }
 .closing-references:hover { color: #d5b6a6; }
+#p-capa > p:first-of-type { font-size: 14px !important; line-height: normal !important; }
+#p-capa > p:nth-of-type(2) { font-size: 22px !important; line-height: normal !important; }
+#p-capa > h2 { font: 700 25.564px/normal Montserrat, sans-serif !important; letter-spacing: 2.5564px; }
+.cover-cutout { pointer-events: none; }
 #p-masculina > h2 { font-size: 37px !important; line-height: 1.08 !important; }
 #p-tela > h2, #p-inseguranca > h2, #p-marcha > h2 { font-size: 42px !important; line-height: 1.08 !important; }
 #p-tons > h2 { font-size: 39px !important; line-height: 1.08 !important; }
