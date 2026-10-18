@@ -12,7 +12,7 @@
     const PAGE_W = 595;
     const PAGE_H = 842;
     const root = document.documentElement;
-    document.querySelector('link[rel="stylesheet"][href="styles.css"]').href = 'styles.css?v=20261018-index-spacing';
+    document.querySelector('link[rel="stylesheet"][href="styles.css"]').href = 'styles.css?v=20261018-authors-books';
     const revista = document.querySelector('.revista');
     const slots = Array.from(document.querySelectorAll('.slot'));
     const totalPages = slots.length; // 20 páginas (incluindo Contracapa)
@@ -755,10 +755,49 @@
     document.querySelectorAll('#p-indice > .idx-item').forEach(item => indexGrid.appendChild(item));
     document.getElementById('p-indice').appendChild(indexGrid);
     document.querySelector('#p-autores img[alt="Gustavo H L Munhoz"]').src = 'assets/autor-gustavo.png';
+    document.querySelector('#p-autores img[alt="Luigi A Biondo"]').src = 'assets/luigi.png';
+    document.querySelector('#p-autores img[alt="Rodrigo Bolgheroni"]').src = 'assets/rodrigo.png';
     document.querySelectorAll('#p-autores .autor-foto').forEach((photo, index) => {
         if (index === 1 || index === 4) photo.style.left = '279px';
         if (index >= 3) photo.style.top = '610px';
     });
+    const bookCover = document.querySelector('#p-antes > img');
+    const coverLink = document.createElement('a');
+    coverLink.className = 'book-cover-link';
+    coverLink.href = 'https://drive.google.com/file/d/1axUZJXGv4OHpDT8SXHG3Hqj92h8Wg_hs/view?usp=drivesdk';
+    coverLink.target = '_blank';
+    coverLink.rel = 'noopener noreferrer';
+    coverLink.setAttribute('aria-label', 'Abrir o livro Tornar-se negro em uma nova aba');
+    coverLink.title = 'Abrir Tornar-se negro';
+    coverLink.style.cssText = bookCover.style.cssText;
+    bookCover.before(coverLink);
+    coverLink.appendChild(bookCover);
+    bookCover.style.cssText = 'left:0;top:0;width:100%;height:100%';
+    const coverLinkLabel = document.createElement('span');
+    coverLinkLabel.className = 'book-link-label';
+    coverLinkLabel.setAttribute('aria-hidden', 'true');
+    coverLinkLabel.textContent = '↗';
+    coverLink.appendChild(coverLinkLabel);
+
+    const fanonText = Array.from(document.querySelectorAll('#p-belo > p')).find(paragraph => paragraph.textContent.includes('Pele negra, máscaras brancas'));
+    const fanonBackground = fanonText.previousElementSibling;
+    const fanonLink = document.createElement('a');
+    fanonLink.className = 'book-box-link';
+    fanonLink.href = 'https://www.geledes.org.br/wp-content/uploads/2014/05/Frantz_Fanon_Pele_negra_mascaras_brancas.pdf';
+    fanonLink.target = '_blank';
+    fanonLink.rel = 'noopener noreferrer';
+    fanonLink.setAttribute('aria-label', 'Abrir o livro Pele negra, máscaras brancas em PDF em uma nova aba');
+    fanonLink.title = 'Ler Pele negra, máscaras brancas (PDF)';
+    fanonLink.style.cssText = fanonBackground.style.cssText;
+    fanonBackground.replaceWith(fanonLink);
+    fanonLink.appendChild(fanonText);
+    fanonText.style.left = '19px';
+    fanonText.style.top = '23px';
+    const fanonLinkLabel = document.createElement('span');
+    fanonLinkLabel.className = 'book-link-label';
+    fanonLinkLabel.setAttribute('aria-hidden', 'true');
+    fanonLinkLabel.textContent = 'Ler o livro ↗';
+    fanonLink.appendChild(fanonLinkLabel);
     const editorialMask = document.querySelectorAll('#p-editorial > img')[1];
     editorialMask.style.cssText = 'left:287px;top:-16px;width:122px;height:164px;border-radius:0;clip-path:circle(59px at 61px 87px)';
     const screenPortrait = document.querySelector('#p-tela img');
