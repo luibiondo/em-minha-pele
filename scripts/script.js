@@ -777,7 +777,7 @@
     }
 
     function closeModal() {
-        if (!modalMusica) return;
+        if (!modalMusica || modalMusica.hidden) return;
         modalMusica.classList.remove('is-open');
         setTimeout(() => modalMusica.setAttribute('hidden', ''), 250);
         if (openMusicaBtn) openMusicaBtn.focus();
@@ -909,7 +909,7 @@
     makeupChart.innerHTML = '<svg viewBox="0 0 314 375" role="img" aria-label="Percepção de 60 estudantes em Ocara: 53,3% tiveram dificuldade para achar base e 83,3% consideraram o mercado inacessível">' +
         '<text x="157" y="45" text-anchor="middle" class="chart-heading">Percepção dos 60 estudantes</text><text x="157" y="65" text-anchor="middle">em Ocara</text>' +
         [0, 20, 40, 60, 80, 100].map(n => '<path d="M25 ' + (304 - n * 2) + 'H314"/><text x="2" y="' + (308 - n * 2) + '" class="chart-axis">' + n + '%</text>').join('') +
-        '<rect class="chart-bar" x="55" y="195" width="58" height="109"/><rect class="chart-bar" x="202" y="131" width="58" height="173"/>' +
+        '<rect class="chart-bar" x="55" y="197.4" width="58" height="106.6"/><rect class="chart-bar" x="202" y="137.4" width="58" height="166.6"/>' +
         '<text x="55" y="343" class="chart-value">53,3%</text><text x="202" y="343" class="chart-value">83,3%</text>' +
         '<text x="25" y="365" class="chart-axis">Dificuldade para achar base</text><text x="180" y="365" class="chart-axis">Mercado inacessível</text></svg>' +
         '<button type="button" class="chart-replay">↻ Repetir animação</button>';
