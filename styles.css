@@ -1500,9 +1500,8 @@ body { height: 100dvh; overflow: hidden; }
 #p-tons > p { left: 262px !important; top: 561px !important; font-size: 11px; }
 #p-memoria > p.i, #p-existimos > p.i { font-weight: 300; }
 #p-existimos > p.i { width: 473px !important; white-space: normal !important; }
-.page .pn { top: auto; bottom: 14px; left: auto; right: 18px; height: 22px; line-height: 22px; letter-spacing: .64px; z-index: 8; }
-.page.page--verso .pn { left: 18px; right: auto; }
-#p-editorial .pn { right: 18px; }
+.page .pn { top: auto; bottom: 14px; left: auto; right: 8px; height: 22px; line-height: 22px; letter-spacing: .64px; z-index: 8; }
+.page.page--verso .pn { left: 4px; right: auto; }
 #p-direito .pn, #p-anunciada .pn, #p-masculina .pn, #p-antes .pn { color: #562a13; }
 #p-existimos .pn { color: #fff; }
 #p-existimos .photo-carousel[aria-label="Transição capilar"] .photo-carousel__controls { bottom: 45px; }

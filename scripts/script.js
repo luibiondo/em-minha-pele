@@ -12,7 +12,7 @@
     const PAGE_W = 595;
     const PAGE_H = 842;
     const root = document.documentElement;
-    document.querySelector('link[rel="stylesheet"][href="styles.css"]').href = 'styles.css?v=20261018-reading-layout-2';
+    document.querySelector('link[rel="stylesheet"][href="styles.css"]').href = 'styles.css?v=20261018-reading-layout-3';
     const revista = document.querySelector('.revista');
     const slots = Array.from(document.querySelectorAll('.slot'));
     const totalPages = slots.length; // 20 páginas (incluindo Contracapa)
