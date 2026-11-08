@@ -1,0 +1,90 @@
+# Pipeline CI/CD - site estático (HTML/CSS/JS) publicado no GitHub Pages
+name: CI/CD - Deploy static site to Pages
+
+on:
+  # CI + CD: roda a cada push na main
+  push:
+    branches: ["main"]
+  # CI apenas: roda em PRs para a main (o deploy NÃO roda aqui)
+  pull_request:
+    branches: ["main"]
+
+# Permissão mínima para todos os jobs (o deploy pede o que precisa por conta própria)
+permissions:
+  contents: read
+
+jobs:
+  # ---------------------------------------------------------------
+  # CI: checkout, ambiente, dependências e validação
+  # ---------------------------------------------------------------
+  ci:
+    name: CI - Validação
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout do projeto
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Instalar dependências (HTMLHint)
+        run: npm install --global htmlhint
+
+      - name: Verificar se existe index.html
+        run: test -f index.html
+
+      - name: Validar arquivos HTML
+        run: |
+          find . -name "*.html" \
+            -not -path "./.git/*" \
+            -not -path "./node_modules/*" \
+            -print0 | xargs -0 htmlhint --rules tag-pair,doctype-first,id-unique,attr-no-duplication
+
+  # ---------------------------------------------------------------
+  # CD: só roda em push na main e somente se o CI passar
+  # ---------------------------------------------------------------
+  deploy:
+    name: CD - Deploy no GitHub Pages
+    needs: ci
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    # Apenas um deploy por vez, sem cancelar o que já está em andamento
+    concurrency:
+      group: "pages"
+      cancel-in-progress: false
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout do projeto
+        uses: actions/checkout@v4
+
+      - name: Preparar arquivos do site
+        # Copia só o site (sem .git, .github e node_modules) para a pasta dist
+        # Se o seu site estiver em uma subpasta, troque "./" pelo caminho dela
+        run: |
+          mkdir dist
+          rsync -a \
+            --exclude='.git' \
+            --exclude='.github' \
+            --exclude='node_modules' \
+            --exclude='dist' \
+            ./ dist/
+
+      - name: Configurar Pages
+        uses: actions/configure-pages@v5
+
+      - name: Enviar artefato
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+      - name: Deploy no GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5
